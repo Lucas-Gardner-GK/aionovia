@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Marketplace — Business Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700&family=Google+Sans+Display:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1a73e8;
+  --blue-light: #e8f0fe;
+  --blue-mid: #4285f4;
+  --green: #1e8e3e;
+  --green-light: #e6f4ea;
+  --red: #d93025;
+  --red-light: #fce8e6;
+  --yellow: #f29900;
+  --yellow-light: #fef7e0;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f4;
+  --gray-200: #e8eaed;
+  --gray-300: #dadce0;
+  --gray-500: #9aa0a6;
+  --gray-700: #5f6368;
+  --gray-900: #202124;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 2px rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  --shadow-md: 0 1px 3px rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
+  --shadow-lg: 0 2px 6px rgba(60,64,67,.3), 0 8px 24px 8px rgba(60,64,67,.15);
+  --radius: 8px;
+  --radius-lg: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Google Sans', -apple-system, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* HEADER */
+.top-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #4285f4, #1a73e8);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 16px;
+}
+.logo-text { font-size: 18px; font-weight: 500; color: var(--gray-900); }
+.logo-sub { font-size: 12px; color: var(--gray-500); margin-top: 1px; }
+.top-meta { display: flex; align-items: center; gap: 24px; }
+.confidential-badge {
+  background: var(--red-light);
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.date-label { font-size: 12px; color: var(--gray-500); }
+
+/* MAIN LAYOUT */
+.page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+
+/* SECTION TITLES */
+.section-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #1a73e8 0%, #4285f4 50%, #0d47a1 100%);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  color: white;
+  margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 300px; height: 300px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 200px;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.hero-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.hero h1 strong { font-weight: 700; }
+.hero-sub {
+  font-size: 16px;
+  opacity: 0.85;
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.hero-stat {
+  padding: 20px 24px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.hero-stat-label { font-size: 11px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* CARDS */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  padding: 24px;
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card-title { font-size: 14px; font-weight: 500; color: var(--gray-700); margin-bottom: 16px; }
+
+/* GRID LAYOUTS */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+/* KPI CARDS */
+.kpi { text-align: center; padding: 28px 20px; }
+.kpi-icon { font-size: 28px; margin-bottom: 12px; }
+.kpi-num { font-size: 32px; font-weight: 700; color: var(--blue); line-height: 1; margin-bottom: 6px; }
+.kpi-label { font-size: 12px; color: var(--gray-500); }
+.kpi-sub { font-size: 11px; color: var(--gray-500); margin-top: 4px; }
+
+/* CHIPS */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.chip-blue { background: var(--blue-light); color: var(--blue); }
+.chip-green { background: var(--green-light); color: var(--green); }
+.chip-yellow { background: var(--yellow-light); color: var(--yellow); }
+.chip-red { background: var(--red-light); color: var(--red); }
+.chip-gray { background: var(--gray-100); color: var(--gray-700); }
+
+/* TABLE */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  background: var(--gray-50);
+  color: var(--gray-700);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+}
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13px;
+  color: var(--gray-900);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--gray-50); }
+.td-num { font-weight: 600; color: var(--gray-900); }
+.td-green { color: var(--green); font-weight: 600; }
+.td-red { color: var(--red); font-weight: 600; }
+.td-blue { color: var(--blue); font-weight: 600; }
+
+/* PROGRESS BAR */
+.progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.progress-label { font-size: 13px; color: var(--gray-700); min-width: 140px; }
+.progress-bar-outer { flex: 1; height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden; }
+.progress-bar-fill { height: 100%; border-radius: 4px; transition: width 1s; }
+.progress-pct { font-size: 12px; color: var(--gray-500); min-width: 40px; text-align: right; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 48px; }
+.timeline::before { content: ''; position: absolute; left: 16px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-200); }
+.tl-item { position: relative; margin-bottom: 28px; }
+.tl-dot {
+  position: absolute; left: -40px; top: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px currentColor;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; color: white; font-weight: 700;
+}
+.tl-blue { background: var(--blue); color: var(--blue); }
+.tl-green { background: var(--green); color: var(--green); }
+.tl-yellow { background: var(--yellow); color: var(--yellow); }
+.tl-purple { background: #7c3aed; color: #7c3aed; }
+.tl-dark { background: var(--gray-900); color: var(--gray-900); }
+.tl-phase { font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-500); margin-bottom: 2px; }
+.tl-title { font-size: 15px; font-weight: 500; color: var(--gray-900); margin-bottom: 4px; }
+.tl-desc { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+.tl-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+/* CALLOUT */
+.callout { display: flex; gap: 12px; padding: 16px; border-radius: var(--radius); margin-top: 12px; }
+.callout-blue { background: var(--blue-light); }
+.callout-green { background: var(--green-light); }
+.callout-yellow { background: var(--yellow-light); }
+.callout-red { background: var(--red-light); }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.callout-text { font-size: 13px; line-height: 1.6; }
+.callout-blue .callout-text { color: #1557b0; }
+.callout-green .callout-text { color: #137333; }
+.callout-yellow .callout-text { color: #b06000; }
+.callout-red .callout-text { color: #a50e0e; }
+
+/* ROLE CARD */
+.role-card { display: flex; align-items: flex-start; gap: 14px; padding: 16px; }
+.role-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.role-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.role-title { font-size: 12px; color: var(--blue); margin-bottom: 4px; }
+.role-desc { font-size: 12px; color: var(--gray-700); line-height: 1.5; }
+
+/* REVENUE MODEL */
+.rev-card { padding: 20px 24px; }
+.rev-plan { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.rev-price { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1; }
+.rev-price span { font-size: 14px; font-weight: 400; color: var(--gray-500); }
+.rev-features { margin-top: 12px; }
+.rev-feature { font-size: 12px; color: var(--gray-700); padding: 3px 0; display: flex; align-items: center; gap: 6px; }
+.rev-feature::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--gray-200); margin: 32px 0; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 32px;
+  font-size: 12px;
+  color: var(--gray-500);
+  border-top: 1px solid var(--gray-200);
+  margin-top: 48px;
+}
+
+@media print {
+  .top-bar { position: relative; }
+  body { background: white; }
+  .card { box-shadow: none; border: 1px solid var(--gray-200); }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="logo">
+    <div class="logo-icon">AI</div>
+    <div>
+      <div class="logo-text">AI Marketplace</div>
+      <div class="logo-sub">Business Overview</div>
+    </div>
+  </div>
+  <div class="top-meta">
+    <span class="confidential-badge">Confidential</span>
+    <span class="date-label">Juni 2026 · GK Automation</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Concept Overview</div>
+    <h1>The <strong>App Store</strong><br>for AI Automation</h1>
+    <div class="hero-sub">En markedsplass der bedrifter og privatpersoner laster ned ferdige AI-agenter, automasjoner og verktøy — mens creators tjener penger på det de bygger.</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">Abonnementsplaner</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">70/30</div>
+        <div class="hero-stat-label">Creator / Platform split</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">12 mnd</div>
+        <div class="hero-stat-label">MVP til App Store</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8-sifret</div>
+        <div class="hero-stat-label">Potensiale 5 år</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT -->
+  <div class="section-title">Konsept</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">For brukere (consumers)</div>
+      <div class="tl-feature" style="margin-bottom:10px;font-size:13px;color:#5f6368;line-height:1.7;">Bedrifter og privatpersoner betaler månedlig abonnement for tilgang til et bibliotek av AI-agenter. Én-klikk installasjon — agenten er klar til bruk på sekunder.</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="chip chip-blue" style="width:fit-content;">✦ Månedlig abonnement</div>
+        <div class="chip chip-blue" style="width:fit-content;">✦ Én-klikk nedlasting</div>
+        <div class="chip chip-blue" style="width:fit-content;">✦ Privat og bedrift</div>
+        <div class="chip chip-blue" style="width:fit-content;">✦ Høyere plan = mer tilgang</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">For creators</div>
+      <div style="margin-bottom:10px;font-size:13px;color:#5f6368;line-height:1.7;">Hvem som helst kan laste opp sine AI-agenter, automasjoner og verktøy. De får betalt per nedlasting. Du godkjenner hva som publiseres.</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="chip chip-green" style="width:fit-content;">✦ Creator-konto</div>
+        <div class="chip chip-green" style="width:fit-content;">✦ Betalt per nedlasting</div>
+        <div class="chip chip-green" style="width:fit-content;">✦ 70% til creator</div>
+        <div class="chip chip-green" style="width:fit-content;">✦ Alt av AI-verktøy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE MODEL -->
+  <div class="section-title">Forretningsmodell</div>
+  <div class="grid-3">
+    <div class="card rev-card">
+      <div class="rev-plan">Starter</div>
+      <div class="rev-price">99 kr<span>/mnd</span></div>
+      <div class="rev-features">
+        <div class="rev-feature">Tilgang til basis-agenter</div>
+        <div class="rev-feature">Maks 5 nedlastinger/mnd</div>
+        <div class="rev-feature">Privatpersoner</div>
+      </div>
+    </div>
+    <div class="card rev-card" style="border: 2px solid var(--blue);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div class="rev-plan">Pro</div>
+        <span class="chip chip-blue" style="font-size:10px;">Mest populær</span>
+      </div>
+      <div class="rev-price">299 kr<span>/mnd</span></div>
+      <div class="rev-features">
+        <div class="rev-feature">Ubegrenset nedlastinger</div>
+        <div class="rev-feature">Alle agenter inkl. premium</div>
+        <div class="rev-feature">Små bedrifter</div>
+      </div>
+    </div>
+    <div class="card rev-card">
+      <div class="rev-plan">Business</div>
+      <div class="rev-price">799 kr<span>/mnd</span></div>
+      <div class="rev-features">
+        <div class="rev-feature">Alt i Pro</div>
+        <div class="rev-feature">Team-tilgang</div>
+        <div class="rev-feature">Prioritert support</div>
+        <div class="rev-feature">Tilpassede agenter</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">Creator-inntektsmodell</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Inntektstype</th>
+          <th>Creator får</th>
+          <th>Plattformen får</th>
+          <th>Eksempel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Per nedlasting (gratis agent)</td>
+          <td class="td-green">70%</td>
+          <td class="td-blue">30%</td>
+          <td>Creator tjener 70 kr av 100 kr</td>
+        </tr>
+        <tr>
+          <td>Premium agent-abonnement</td>
+          <td class="td-green">70%</td>
+          <td class="td-blue">30%</td>
+          <td>Creator tjener 210 kr av 300 kr/mnd</td>
+        </tr>
+        <tr>
+          <td>Engangskjøp av agent</td>
+          <td class="td-green">70%</td>
+          <td class="td-blue">30%</td>
+          <td>Creator tjener 350 kr av 500 kr</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout callout-blue" style="margin-top:12px;">
+      <div class="callout-icon">💡</div>
+      <div class="callout-text"><strong>Med 100 aktive creators som hver tjener 10 000 kr/mnd</strong> — tar plattformen 30% = 300 000 kr/mnd bare fra creator-inntekter, i tillegg til abonnementsinntektene.</div>
+    </div>
+  </div>
+
+  <!-- FINANCIALS -->
+  <div class="section-title">Økonomi — Byggekostnader</div>
+  <div class="card">
+    <div class="card-title">Engangskostnader for å bygge MVP</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>Post</th><th>Lavt estimat</th><th>Høyt estimat</th><th>Kommentar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>React Native-utvikler</strong></td>
+          <td class="td-num">80 000 kr</td>
+          <td class="td-num">300 000 kr</td>
+          <td>6–9 mnd, Øst-Europa vs. Norge</td>
+        </tr>
+        <tr>
+          <td><strong>Backend-utvikler</strong></td>
+          <td class="td-num">60 000 kr</td>
+          <td class="td-num">250 000 kr</td>
+          <td>Supabase, API, sikkerhet</td>
+        </tr>
+        <tr>
+          <td><strong>UI/UX Designer</strong></td>
+          <td class="td-num">30 000 kr</td>
+          <td class="td-num">120 000 kr</td>
+          <td>Fullstendig app-design</td>
+        </tr>
+        <tr>
+          <td><strong>Apple/Google Developer</strong></td>
+          <td class="td-num">1 300 kr</td>
+          <td class="td-num">2 600 kr</td>
+          <td>Begge App Stores, per år</td>
+        </tr>
+        <tr>
+          <td><strong>Juridisk (GDPR, vilkår)</strong></td>
+          <td class="td-num">10 000 kr</td>
+          <td class="td-num">40 000 kr</td>
+          <td>Advokatbistand</td>
+        </tr>
+        <tr>
+          <td><strong>Testing og QA</strong></td>
+          <td class="td-num">10 000 kr</td>
+          <td class="td-num">30 000 kr</td>
+          <td>Sikre at alt fungerer før launch</td>
+        </tr>
+        <tr style="background:#f8f9fa;">
+          <td><strong>TOTAL</strong></td>
+          <td class="td-green" style="font-size:16px;font-weight:700;">191 300 kr</td>
+          <td class="td-red" style="font-size:16px;font-weight:700;">742 600 kr</td>
+          <td>Avhenger av teamet</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout callout-green" style="margin-top:12px;">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-text"><strong>Realistisk målbudsjett: 250 000–350 000 kr</strong> — med riktig team, delvis remote, og fokus på MVP fremfor perfeksjon. Dette er finansieringsbehovet fra investor/partner.</div>
+    </div>
+  </div>
+
+  <!-- OPERATING COSTS -->
+  <div class="section-title">Økonomi — Månedlige driftskostnader</div>
+  <div class="card">
+    <div class="card-title">Månedlige kostnader når appen er live</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>Post</th><th>Oppstart (0–500 brukere)</th><th>Vekst (500–5 000)</th><th>Skala (5 000+)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Server-hosting (Vercel/Railway)</strong></td>
+          <td>500 kr</td>
+          <td>3 000 kr</td>
+          <td>10 000 kr</td>
+        </tr>
+        <tr>
+          <td><strong>Database (Supabase)</strong></td>
+          <td>0 kr</td>
+          <td>1 000 kr</td>
+          <td>5 000 kr</td>
+        </tr>
+        <tr>
+          <td><strong>AI API-kostnader (Claude/GPT)</strong></td>
+          <td>2 000 kr</td>
+          <td>15 000 kr</td>
+          <td>60 000 kr</td>
+        </tr>
+        <tr>
+          <td><strong>Stripe-avgifter</strong></td>
+          <td>1 400 kr</td>
+          <td>8 000 kr</td>
+          <td>40 000 kr</td>
+        </tr>
+        <tr>
+          <td><strong>Support og vedlikehold</strong></td>
+          <td>0 kr</td>
+          <td>10 000 kr</td>
+          <td>30 000 kr</td>
+        </tr>
+        <tr>
+          <td><strong>Markedsføring</strong></td>
+          <td>5 000 kr</td>
+          <td>20 000 kr</td>
+          <td>80 000 kr</td>
+        </tr>
+        <tr style="background:#f8f9fa;">
+          <td><strong>TOTAL DRIFT/MND</strong></td>
+          <td class="td-green" style="font-weight:700;">~9 000 kr</td>
+          <td class="td-blue" style="font-weight:700;">~57 000 kr</td>
+          <td class="td-blue" style="font-weight:700;">~225 000 kr</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REVENUE PROJECTIONS -->
+  <div class="section-title">Inntektsprojeksjon</div>
+  <div class="card">
+    <div class="card-title">Månedlig inntekt basert på brukerantall</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>Periode</th><th>Brukere</th><th>Snitt abonnement</th><th>Abonnement-inntekt</th><th>Creator-cut (30%)</th><th>Total/mnd</th><th>Drift/mnd</th><th>Resultat</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="chip chip-gray">Mnd 6</span></td>
+          <td>50</td>
+          <td>199 kr</td>
+          <td>9 950 kr</td>
+          <td>5 000 kr</td>
+          <td class="td-num">14 950 kr</td>
+          <td>9 000 kr</td>
+          <td class="td-green">+5 950 kr</td>
+        </tr>
+        <tr>
+          <td><span class="chip chip-blue">Mnd 12</span></td>
+          <td>200</td>
+          <td>250 kr</td>
+          <td>50 000 kr</td>
+          <td>20 000 kr</td>
+          <td class="td-num">70 000 kr</td>
+          <td>20 000 kr</td>
+          <td class="td-green">+50 000 kr</td>
+        </tr>
+        <tr>
+          <td><span class="chip chip-green">År 2</span></td>
+          <td>1 000</td>
+          <td>280 kr</td>
+          <td>280 000 kr</td>
+          <td>80 000 kr</td>
+          <td class="td-num">360 000 kr</td>
+          <td>57 000 kr</td>
+          <td class="td-green">+303 000 kr</td>
+        </tr>
+        <tr>
+          <td><span class="chip chip-yellow">År 3</span></td>
+          <td>5 000</td>
+          <td>299 kr</td>
+          <td>1 495 000 kr</td>
+          <td>300 000 kr</td>
+          <td class="td-num">1 795 000 kr</td>
+          <td>225 000 kr</td>
+          <td class="td-green">+1 570 000 kr</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout callout-green" style="margin-top:12px;">
+      <div class="callout-icon">📈</div>
+      <div class="callout-text"><strong>Break-even ved ~50 brukere.</strong> Det er det som gjør denne modellen sterk — driftskostnadene er lave og inntektsmodellen skalerer uten proporsjonalt mer arbeid.</div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="section-title">Team & Roller</div>
+  <div class="card">
+    <div class="grid-2" style="gap:0;">
+      <div class="role-card" style="border-right:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);">
+        <div class="role-avatar" style="background:#e8f0fe;">👨‍💻</div>
+        <div>
+          <div class="role-name">Lucas Gardner</div>
+          <div class="role-title">CEO & Founder</div>
+          <div class="role-desc">Produkt, salg, AI-agenter, n8n/MCP, forretningsutvikling og nøkkelkontakter. Ansikt utad.</div>
+        </div>
+      </div>
+      <div class="role-card" style="border-bottom:1px solid var(--gray-100);">
+        <div class="role-avatar" style="background:#e6f4ea;">🤝</div>
+        <div>
+          <div class="role-name">Vetle Kolstad</div>
+          <div class="role-title">CEO & Founder</div>
+          <div class="role-desc">Produkt, salg, AI-agenter, n8n/MCP, forretningsutvikling og nøkkelkontakter.</div>
+        </div>
+      </div>
+      <div class="role-card" style="border-right:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);">
+        <div class="role-avatar" style="background:#fef7e0;">🔧</div>
+        <div>
+          <div class="role-name">React Native-utvikler</div>
+          <div class="role-title">Må ansettes · Fase 2</div>
+          <div class="role-desc">Bygger selve appen for iPhone og Android. Kritisk kompetanse som teamet ikke har internt.</div>
+        </div>
+      </div>
+      <div class="role-card" style="border-bottom:1px solid var(--gray-100);">
+        <div class="role-avatar" style="background:#fef7e0;">⚙️</div>
+        <div>
+          <div class="role-name">Backend-utvikler</div>
+          <div class="role-title">Må ansettes · Fase 2</div>
+          <div class="role-desc">Supabase, API-arkitektur, sikkerhet og skalerbar infrastruktur.</div>
+        </div>
+      </div>
+      <div class="role-card" style="border-right:1px solid var(--gray-100);">
+        <div class="role-avatar" style="background:#fce8e6;">🎨</div>
+        <div>
+          <div class="role-name">UI/UX Designer</div>
+          <div class="role-title">Freelance · Fase 2</div>
+          <div class="role-desc">Profesjonelt app-design. Appen må se like bra ut som den fungerer.</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-avatar" style="background:#f3e8ff;">🌟</div>
+        <div>
+          <div class="role-name">Strategic Partner / Investor</div>
+          <div class="role-title">Fase 1 · TBD</div>
+          <div class="role-desc">Kapital, nettverk og bransjekunnskap. Åpner dører til enterprise-kunder og media.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="section-title">Teknisk Stack</div>
+  <div class="card">
+    <div class="grid-2">
+      <div>
+        <div style="font-size:12px;font-weight:500;color:var(--gray-500);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Frontend & App</div>
+        <div class="progress-row">
+          <div class="progress-label">React Native</div>
+          <div class="progress-bar-outer"><div class="progress-bar-fill" style="width:90%;background:var(--blue);"></div></div>
+          <div class="progress-pct">iOS + Android</div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label">Next.js (web)</div>
+          <div class="progress-bar-outer"><div class="progress-bar-fill" style="width:85%;background:var(--blue);"></div></div>
+          <div class="progress-pct">Desktop</div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label">Expo</div>
+          <div class="progress-bar-outer"><div class="progress-bar-fill" style="width:80%;background:var(--blue);"></div></div>
+          <div class="progress-pct">Build & deploy</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:500;color:var(--gray-500);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Backend & Infrastruktur</div>
+        <div class="progress-row">
+          <div class="progress-label">Supabase</div>
+          <div class="progress-bar-outer"><div class="progress-bar-fill" style="width:95%;background:var(--green);"></div></div>
+          <div class="progress-pct">Database</div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label">n8n + MCP</div>
+          <div class="progress-bar-outer"><div class="progress-bar-fill" style="width:100%;background:var(--green);"></div></div>
+          <div class="progress-pct">AI-agenter ✓</div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label">Stripe</div>
+          <div class="progress-bar-outer"><div class="progress-bar-fill" style="width:90%;background:var(--green);"></div></div>
+          <div class="progress-pct">Betalinger</div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label">Vercel / Railway</div>
+          <div class="progress-bar-outer"><div class="progress-bar-fill" style="width:85%;background:var(--green);"></div></div>
+          <div class="progress-pct">Hosting</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout callout-blue" style="margin-top:16px;">
+      <div class="callout-icon">⚡</div>
+      <div class="callout-text">n8n og MCP er allerede mestret — det er selve kjernen i agentene som gjør plattformen verdifull. Teknologistacken er velprøvd og brukt av verdens største tech-selskaper.</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-title">Fremdriftsplan</div>
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot tl-blue"></div>
+        <div class="tl-phase">Fase 1 · Jun–Aug 2026</div>
+        <div class="tl-title">Validering og konsept</div>
+        <div class="tl-desc">Bygg landingsside, samle e-poster fra interesserte, snakk med 20 potensielle brukere og 10 potensielle creators. Bevis at folk vil betale før én linje kode skrives. GK Automation genererer inntekt parallelt.</div>
+        <div class="tl-chips">
+          <span class="chip chip-blue">Landingsside live</span>
+          <span class="chip chip-blue">100 e-poster samlet</span>
+          <span class="chip chip-blue">Investor-dialog</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-yellow"></div>
+        <div class="tl-phase">Fase 2 · Sep–Des 2026</div>
+        <div class="tl-title">MVP-bygging</div>
+        <div class="tl-desc">Ansett utviklere og designer. Bygg brukerkontoer, agent-bibliotek med 10–20 agenter, betalingssystem og creator-upload. Fokus på det enkleste som faktisk fungerer.</div>
+        <div class="tl-chips">
+          <span class="chip chip-yellow">Team ansatt</span>
+          <span class="chip chip-yellow">Betalingssystem</span>
+          <span class="chip chip-yellow">10 agenter klare</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-green"></div>
+        <div class="tl-phase">Fase 3 · Jan–Feb 2027</div>
+        <div class="tl-title">Beta-lansering</div>
+        <div class="tl-desc">50–100 beta-brukere fra e-postlisten, gratis tilgang mot tilbakemelding. Rekrutter de første 5–10 creators. Fiks kritiske feil. Mål: produktet er stabilt og folk liker det.</div>
+        <div class="tl-chips">
+          <span class="chip chip-green">Beta-brukere</span>
+          <span class="chip chip-green">5+ creators</span>
+          <span class="chip chip-green">Stabil plattform</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-purple"></div>
+        <div class="tl-phase">Fase 4 · Mar 2027</div>
+        <div class="tl-title">Offentlig App Store-lansering</div>
+        <div class="tl-desc">Simultanlansering på App Store og Google Play. ProductHunt-kampanje. Norske tech-medier. Målsetting: 200 betalende brukere innen 30 dager etter lansering.</div>
+        <div class="tl-chips">
+          <span class="chip chip-blue">App Store live</span>
+          <span class="chip chip-blue">ProductHunt</span>
+          <span class="chip chip-blue">200 brukere</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-dark"></div>
+        <div class="tl-phase">Fase 5 · 2027–2028</div>
+        <div class="tl-title">Vekst og skalering</div>
+        <div class="tl-desc">Aktiv creator-rekruttering, enterprise-salg til større bedrifter, Norden-ekspansjon. Mål: 10 000 betalende brukere, 50+ aktive creators, positiv månedlig cashflow.</div>
+        <div class="tl-chips">
+          <span class="chip chip-green">1 000 brukere</span>
+          <span class="chip chip-green">Norden-ekspansjon</span>
+          <span class="chip chip-green">Break-even +</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RISKS -->
+  <div class="section-title">Risikovurdering</div>
+  <p style="font-size:13px;color:var(--gray-500);margin:-12px 0 16px;">Klikk på en risiko for mer detaljer.</p>
+  <div class="card">
+    <table class="data-table">
+      <thead>
+        <tr><th>Risiko</th><th>Nivå</th><th>Tiltak</th></tr>
+      </thead>
+      <tbody>
+        <tr class="risk-row" onclick="openRisk('hoena')" style="cursor:pointer;">
+          <td><strong>Høna-og-egget-problem</strong> <span style="font-size:11px;color:#94a3b8;">↗</span><br><span style="font-size:12px;color:var(--gray-500);">Trenger brukere for creators og creators for brukere</span></td>
+          <td><span class="chip chip-yellow">Medium</span></td>
+          <td style="font-size:12px;">Start med å bygge agent-biblioteket selv.</td>
+        </tr>
+        <tr class="risk-row" onclick="openRisk('konkurrenter')" style="cursor:pointer;">
+          <td><strong>Store konkurrenter</strong> <span style="font-size:11px;color:#94a3b8;">↗</span><br><span style="font-size:12px;color:var(--gray-500);">Microsoft, Google, OpenAI kan bygge noe lignende</span></td>
+          <td><span class="chip chip-yellow">Medium</span></td>
+          <td style="font-size:12px;">Norsk nisje og lokal tilpasning er fordelen.</td>
+        </tr>
+        <tr class="risk-row" onclick="openRisk('kvalitet')" style="cursor:pointer;">
+          <td><strong>Kvalitetskontroll</strong> <span style="font-size:11px;color:#94a3b8;">↗</span><br><span style="font-size:12px;color:var(--gray-500);">Dårlige agenter skader plattformens omdømme</span></td>
+          <td><span class="chip chip-red">Høy</span></td>
+          <td style="font-size:12px;">Manuell godkjenning av alle agenter i starten.</td>
+        </tr>
+        <tr class="risk-row" onclick="openRisk('gdpr')" style="cursor:pointer;">
+          <td><strong>GDPR og juridisk ansvar</strong> <span style="font-size:11px;color:#94a3b8;">↗</span><br><span style="font-size:12px;color:var(--gray-500);">Hva skjer hvis en agent gjør noe skadelig?</span></td>
+          <td><span class="chip chip-red">Høy</span></td>
+          <td style="font-size:12px;">Juridisk bistand tidlig. Tydelige vilkår og ansvarsfraskrivelse.</td>
+        </tr>
+        <tr class="risk-row" onclick="openRisk('kapital')" style="cursor:pointer;">
+          <td><strong>Kapitalrisiko</strong> <span style="font-size:11px;color:#94a3b8;">↗</span><br><span style="font-size:12px;color:var(--gray-500);">Byggefasen koster mer enn estimert</span></td>
+          <td><span class="chip chip-yellow">Medium</span></td>
+          <td style="font-size:12px;">GK Automation genererer inntekt parallelt.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RISK MODAL -->
+  <div id="risk-modal" onclick="closeRisk()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
+    <div onclick="event.stopPropagation()" style="background:#fff;border-radius:16px;padding:36px;max-width:560px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <button onclick="closeRisk()" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;">×</button>
+      <div id="risk-level" style="margin-bottom:12px;"></div>
+      <h2 id="risk-title" style="font-size:22px;font-weight:700;margin-bottom:8px;"></h2>
+      <p id="risk-sub" style="font-size:14px;color:#64748b;margin-bottom:20px;"></p>
+      <div style="background:#f8fafc;border-radius:10px;padding:20px;margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#94a3b8;margin-bottom:10px;">Hva innebærer dette?</div>
+        <p id="risk-detail" style="font-size:14px;color:#334155;line-height:1.7;"></p>
+      </div>
+      <div style="background:#f0fdf4;border-radius:10px;padding:20px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#16a34a;margin-bottom:10px;">Tiltak</div>
+        <p id="risk-action" style="font-size:14px;color:#334155;line-height:1.7;"></p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .risk-row:hover { background: #f8fafc; }
+    .risk-row:hover td:first-child strong { color: #4f46e5; }
+  </style>
+
+  <script>
+    const risks = {
+      hoena: {
+        title: 'Høna-og-egget-problemet',
+        level: 'Medium',
+        levelColor: '#f59e0b',
+        sub: 'Trenger brukere for creators og creators for brukere',
+        detail: 'Et klassisk marketplace-problem: creators vil ikke laste opp agenter hvis det ikke er noen brukere, og brukere vil ikke betale for abonnement hvis det ikke er nok agenter. Dette er den tidligste og viktigste utfordringen å løse. Alle vellykkede marketplaces (App Store, Etsy, Airbnb) har møtt dette og løst det på samme måte.',
+        action: 'Lucas og Vetle bygger de første 20 agentene selv for å fylle biblioteket. Disse brukes gratis i starten for å tiltrekke de første brukerne. Når brukerbasen vokser, vil creators naturlig strømme til fordi det er penger å tjene.'
+      },
+      konkurrenter: {
+        title: 'Store konkurrenter',
+        level: 'Medium',
+        levelColor: '#f59e0b',
+        sub: 'Microsoft, Google og OpenAI kan bygge noe lignende',
+        detail: 'Teknologigigantene har ressurser til å kopiere konseptet, men de fokuserer på globale enterprise-løsninger. De vil aldri prioritere norsk arbeidsliv, norske regnskapsregler, Tripletex-integrasjon eller norskspråklige agenter. Det er her Aionovia vinner.',
+        action: 'Norsk nisje og lokal tilpasning er fordelen. Tid til marked er kritisk — jo raskere vi er ute, jo sterkere er merkevaren vår i Norge. Vi bygger noe de store aldri vil bry seg nok om til å kopiere skikkelig.'
+      },
+      kvalitet: {
+        title: 'Kvalitetskontroll',
+        level: 'Høy',
+        levelColor: '#ef4444',
+        sub: 'Dårlige agenter skader plattformens omdømme',
+        detail: 'Hvis en agent sender feil e-poster, sletter viktige filer eller gir dårlige resultater, vil bedrifter miste tillit til hele plattformen. En dårlig opplevelse tidlig kan drepe veksten. Dette er en høy risiko fordi vi er avhengige av at creators leverer kvalitet.',
+        action: 'I starten godkjennes alle agenter manuelt av Lucas og Vetle før de publiseres. Hver agent testes grundig. Over tid bygges automatiserte tester og et rating-system der dårlige agenter fjernes raskt basert på brukeranmeldelser.'
+      },
+      gdpr: {
+        title: 'GDPR og juridisk ansvar',
+        level: 'Høy',
+        levelColor: '#ef4444',
+        sub: 'Hva skjer hvis en agent gjør noe skadelig?',
+        detail: 'AI-agenter behandler bedriftsdata, sender e-poster og utfører handlinger på vegne av brukere. Hvis en agent misbruker data eller gjør noe ulovlig, kan Aionovia holdes ansvarlig. GDPR krever at vi er tydelige på hvordan data behandles, hvem som eier hva og hva som skjer ved brudd.',
+        action: 'Juridisk bistand engasjeres tidlig — helst i fase 1. Tydelige brukervilkår og ansvarsfraskrivelse skrives profesjonelt. Creators signerer egne vilkår som plasserer ansvar hos dem for sine agenter. Databehandleravtaler settes opp for alle bedriftskunder.'
+      },
+      kapital: {
+        title: 'Kapitalrisiko',
+        level: 'Medium',
+        levelColor: '#f59e0b',
+        sub: 'Byggefasen koster mer enn estimert',
+        detail: 'Å ansette en React Native-utvikler og en backend-utvikler er den største kostnaden. En utvikler koster 800–1500 kr/time. Uforutsette tekniske problemer, lengre byggetid eller markedsføringskostnader kan overstige budsjettet. Uten kapital stopper alt.',
+        action: 'GK Automation genererer løpende inntekter som finansierer fase 1 (validering). Ekstern finansiering — enten fra investorer eller støtteordninger som Innovasjon Norge — dekker utviklingskostnadene i fase 2. Vi bygger ikke appen før vi har bevist at noen vil betale.'
+      }
+    };
+
+    function openRisk(id) {
+      const r = risks[id];
+      document.getElementById('risk-title').textContent = r.title;
+      document.getElementById('risk-sub').textContent = r.sub;
+      document.getElementById('risk-detail').textContent = r.detail;
+      document.getElementById('risk-action').textContent = r.action;
+      document.getElementById('risk-level').innerHTML = `<span style="background:${r.levelColor}20;color:${r.levelColor};font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid ${r.levelColor}40;">● ${r.level} risiko</span>`;
+      const modal = document.getElementById('risk-modal');
+      modal.style.display = 'flex';
+    }
+
+    function closeRisk() {
+      document.getElementById('risk-modal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRisk(); });
+  </script>
+
+  <!-- WHY NOW -->
+  <div class="section-title">Hvorfor nå</div>
+  <div class="grid-3">
+    <div class="card" style="text-align:center;padding:28px 20px;">
+      <div style="font-size:32px;margin-bottom:12px;">🇳🇴</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:8px;">Norsk nisje</div>
+      <div style="font-size:12px;color:var(--gray-700);">Ingen tilsvarende norsk plattform for AI-automasjoner eksisterer. Markedet er åpent.</div>
+    </div>
+    <div class="card" style="text-align:center;padding:28px 20px;">
+      <div style="font-size:32px;margin-bottom:12px;">📈</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:8px;">AI-bølgen</div>
+      <div style="font-size:12px;color:var(--gray-700);">Bedrifter vil implementere AI nå — men vet ikke hvordan. Vi gir dem løsningen på ett sted.</div>
+    </div>
+    <div class="card" style="text-align:center;padding:28px 20px;">
+      <div style="font-size:32px;margin-bottom:12px;">⚡</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:8px;">Teknologien er klar</div>
+      <div style="font-size:12px;color:var(--gray-700);">n8n, MCP, Claude API — alt som trengs for å bygge dette eksisterer og er tilgjengelig i dag.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="callout callout-blue">
+    <div class="callout-icon">🚀</div>
+    <div class="callout-text" style="font-size:15px;line-height:1.7;">
+      <strong>Neste steg:</strong> Valider konseptet med 20 potensielle brukere. Bygg landingssiden. Sett opp første investor-samtale. GK Automation finansierer valideringsfasen — ekstern kapital trengs fra fase 2.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  GK Automation · Lucas Gardner & Vetle Kolstad · Stavanger, Norge · Juni 2026 · Konfidensielt
+</div>
+
+</body>
+</html>

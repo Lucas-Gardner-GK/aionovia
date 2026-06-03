@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aionovia — Notater & Utgifter</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #e8ecf7;
+  --surface: #ffffff;
+  --border: #dde1f0;
+  --accent: #4f6ef7;
+  --accent2: #0ea5e9;
+  --text: #1a1d2e;
+  --muted: #6b7280;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+header {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.5px; }
+.logo-icon { width: 34px; height: 34px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 700; }
+.tab-bar { display: flex; gap: 0; }
+.tab-btn { padding: 0 24px; height: 64px; border: none; background: transparent; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; }
+.tab-btn.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.btn { padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: 'Plus Jakarta Sans', sans-serif; transition: all .2s; }
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #6a58f0; }
+.btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.save-status { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.save-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+.save-dot.unsaved { background: #f59e0b; }
+
+/* NOTES LAYOUT */
+.layout { display: flex; flex: 1; height: calc(100vh - 64px); }
+.sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+.sidebar-header { padding: 20px 20px 12px; display: flex; align-items: center; justify-content: space-between; }
+.sidebar-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.new-note-btn { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); color: white; border: none; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all .2s; font-family: 'Plus Jakarta Sans', sans-serif; }
+.new-note-btn:hover { background: #6a58f0; transform: scale(1.05); }
+.search-wrap { padding: 0 16px 12px; }
+.search-input { width: 100%; padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Plus Jakarta Sans', sans-serif; background: #f8f9ff; color: var(--text); outline: none; transition: border .2s; }
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--muted); }
+.notes-list { flex: 1; overflow-y: auto; padding: 0 8px; }
+.note-item { padding: 12px; border-radius: 10px; cursor: pointer; transition: all .15s; margin-bottom: 4px; border: 1.5px solid transparent; }
+.note-item:hover { background: #f0f2ff; }
+.note-item.active { background: #eff1ff; border-color: #c7d0fa; }
+.note-item-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.note-item-preview { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.note-item-date { font-size: 11px; color: #adb5bd; margin-top: 4px; }
+.note-category { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.cat-ideer { background: rgba(79,110,247,0.1); color: var(--accent); }
+.cat-møter { background: rgba(14,165,233,0.1); color: var(--accent2); }
+.cat-oppgaver { background: rgba(34,197,94,0.1); color: #16a34a; }
+.cat-annet { background: rgba(107,114,128,0.1); color: var(--muted); }
+.sidebar-footer { padding: 16px; border-top: 1px solid var(--border); }
+.note-count { font-size: 12px; color: var(--muted); text-align: center; }
+.editor-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.editor-toolbar { padding: 16px 40px 12px; border-bottom: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.editor-title-input { font-size: 22px; font-weight: 700; border: none; outline: none; background: transparent; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.5px; flex: 1; min-width: 200px; }
+.editor-title-input::placeholder { color: #c0c7d4; }
+.category-select { padding: 6px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Plus Jakarta Sans', sans-serif; background: #f8f9ff; color: var(--text); outline: none; cursor: pointer; }
+.delete-btn { padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1.5px solid #fca5a5; background: transparent; color: #ef4444; font-family: 'Plus Jakarta Sans', sans-serif; transition: all .2s; }
+.delete-btn:hover { background: #fef2f2; }
+.editor-content { flex: 1; padding: 32px 40px; overflow-y: auto; }
+.note-textarea { width: 100%; min-height: 100%; height: 600px; border: none; outline: none; resize: none; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.8; color: var(--text); background: transparent; }
+.note-textarea::placeholder { color: #c0c7d4; }
+.empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 40px; }
+.empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+.empty-state h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.empty-state p { font-size: 14px; opacity: 0.7; }
+
+/* EXPENSES */
+.exp-section { padding: 32px 48px; max-width: 960px; margin: 0 auto; width: 100%; }
+.exp-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 24px; }
+.exp-card { background: #ffffff; border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.exp-card-center { text-align: center; }
+.exp-label { font-size: 11px; color: #9ca3af; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.exp-value { font-size: 22px; font-weight: 700; color: var(--accent); }
+.exp-value-dark { font-size: 22px; font-weight: 700; color: var(--text); }
+.form-input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); background: #f8f9ff; outline: none; transition: border .2s; }
+.form-input:focus { border-color: var(--accent); }
+.form-input::placeholder { color: var(--muted); }
+
+footer { background: #1e2235; border-top: 1px solid #2d3148; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; }
+.footer-logo { font-size: 14px; font-weight: 700; color: #ffffff; }
+.footer-copy { font-size: 12px; color: #6b7280; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">Ai</div>
+    Aionovia
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" id="btn-notater" onclick="showTab('notater')">📝 Notater</button>
+    <button class="tab-btn" id="btn-utgifter" onclick="showTab('utgifter')">💸 Utgifter</button>
+  </div>
+  <div class="header-right">
+    <div class="save-status"><div class="save-dot" id="saveDot"></div><span id="saveText">Lagret</span></div>
+    <button class="btn btn-outline" onclick="exportNotes()">Eksporter</button>
+    <button class="btn btn-primary" id="save-btn" onclick="saveCurrentNote()">Lagre</button>
+  </div>
+</header>
+
+<!-- NOTES TAB -->
+<div id="tab-notater" class="layout">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Notater</span>
+      <button class="new-note-btn" onclick="newNote()" title="Nytt notat">+</button>
+    </div>
+    <div class="search-wrap">
+      <input class="search-input" type="text" placeholder="Søk i notater..." oninput="searchNotes(this.value)" />
+    </div>
+    <div class="notes-list" id="notesList"></div>
+    <div class="sidebar-footer"><div class="note-count" id="noteCount">0 notater</div></div>
+  </div>
+  <div class="editor-area" id="editorArea">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">📝</div>
+      <h3>Ingen notat valgt</h3>
+      <p>Trykk <strong>+</strong> for å opprette et nytt notat</p>
+    </div>
+    <div id="editorPanel" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+      <div class="editor-toolbar">
+        <input class="editor-title-input" id="noteTitle" type="text" placeholder="Tittel..." oninput="markUnsaved()" />
+        <select class="category-select" id="noteCategory" onchange="markUnsaved()">
+          <option value="ideer">💡 Ideer</option>
+          <option value="møter">📅 Møter</option>
+          <option value="oppgaver">✅ Oppgaver</option>
+          <option value="annet">📌 Annet</option>
+        </select>
+        <button class="delete-btn" onclick="deleteCurrentNote()">Slett</button>
+      </div>
+      <div class="editor-content">
+        <textarea class="note-textarea" id="noteContent" placeholder="Skriv her... (Cmd+S for å lagre)" oninput="markUnsaved()"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPENSES TAB -->
+<div id="tab-utgifter" style="display:none;overflow-y:auto;flex:1;">
+  <div class="exp-section">
+    <h2 style="font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px;">💸 Utgifter — Aionovia</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:28px;">50/50 split mellom Lucas og Vetle. Legg inn hvem som betalte, så regner vi ut hvem som skylder hva.</p>
+
+    <!-- SUMMARY -->
+    <div class="exp-grid">
+      <div class="exp-card exp-card-center">
+        <div class="exp-label">Totalt brukt</div>
+        <div class="exp-value" id="exp-total">kr 0</div>
+      </div>
+      <div class="exp-card exp-card-center">
+        <div class="exp-label">Lucas har betalt</div>
+        <div class="exp-value-dark" id="exp-lucas">kr 0</div>
+      </div>
+      <div class="exp-card exp-card-center">
+        <div class="exp-label">Vetle har betalt</div>
+        <div class="exp-value-dark" id="exp-vetle">kr 0</div>
+      </div>
+      <div class="exp-card exp-card-center">
+        <div class="exp-label">Hver skal betale</div>
+        <div class="exp-value-dark" id="exp-split">kr 0</div>
+      </div>
+    </div>
+
+    <!-- BALANCE -->
+    <div class="exp-card" style="margin-bottom:24px;font-size:15px;font-weight:600;text-align:center;padding:16px;" id="exp-balance">–</div>
+
+    <!-- ADD FORM -->
+    <div class="exp-card" style="margin-bottom:24px;">
+      <div style="font-size:14px;font-weight:700;margin-bottom:16px;">+ Legg til utgift</div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px;align-items:end;">
+        <div>
+          <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px;">Beskrivelse</label>
+          <input id="exp-desc" class="form-input" type="text" placeholder="f.eks. aionovia.com domene" />
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px;">Beløp (NOK)</label>
+          <input id="exp-amount" class="form-input" type="number" placeholder="0" min="0" />
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px;">Kategori</label>
+          <select id="exp-cat" class="form-input" style="height:42px;">
+            <option>Domene</option>
+            <option>Varemerke</option>
+            <option>Utvikling</option>
+            <option>Markedsføring</option>
+            <option>Verktøy</option>
+            <option>Annet</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px;">Betalt av</label>
+          <select id="exp-who" class="form-input" style="height:42px;">
+            <option>Lucas</option>
+            <option>Vetle</option>
+          </select>
+        </div>
+        <button onclick="addExpense()" class="btn btn-primary" style="height:42px;white-space:nowrap;">Legg til</button>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="exp-card">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Alle utgifter</div>
+      <div id="expense-list"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Aionovia</div>
+  <div class="footer-copy">© 2026 GK Automation · Lucas & Vetle</div>
+</footer>
+
+<script>
+// ══════════════════════════════════════
+// NOTES
+// ══════════════════════════════════════
+let notes = [];
+let currentId = null;
+let saveTimer = null;
+
+function loadNotes() {
+  const saved = localStorage.getItem('aionovia_notes_v2');
+  if (saved) {
+    notes = JSON.parse(saved);
+  } else {
+    const now = new Date().toISOString();
+    notes = [
+      { id:1, title:'🚀 Aionovia — Oppsummering & Status', category:'annet', created:now, updated:now, content:`AIONOVIA — AI AGENT MARKETPLACE
+=============================
+
+HVA ER AIONOVIA?
+• App Store for AI-agenter
+• Bedrifter laster ned ferdige agenter med ett klikk
+• Creators laster opp og tjener penger per nedlasting
+• Starter i Norge → globalt
+
+NAVN
+• Aionovia ✅ — VALGT & KJØPT ($6.99/år, ordre #204298282)
+• aionovia.com kjøpt på Namecheap
+• @aionovia sikret på Instagram og TikTok
+• ⏳ Registrer som varemerke hos Patentstyret.no (~2500 kr)
+
+TEAM
+• Lucas Gardner — CEO & Founder (produkt, salg, AI-agenter, n8n/MCP, forretningsutvikling, nøkkelkontakter, ansikt utad)
+• Vetle Kolstad — CEO & Founder (produkt, salg, AI-agenter, n8n/MCP, forretningsutvikling, nøkkelkontakter)
+
+FORRETNINGSMODELL
+• Starter 99 kr/mnd
+• Pro 299 kr/mnd
+• Business 799 kr/mnd
+• Creator-splitt: 70/30 → opptil 80/20 ved 50k+ nedlastinger
+• Plattformen tar 30% av creator-inntekter
+
+FILER PÅ DESKTOP (/AIONOVIA-mappe)
+• Aionovia_prototype.html — clickable prototype (7 sider)
+• Byggeplan_Aionovia.html — full byggeplan
+• Aionovia_Investordokument.html — pitch-dokument for investorer
+• Aionovia_Notater.html — dette dokumentet` },
+      { id:2, title:'✅ Hva er gjort så langt', category:'oppgaver', created:now, updated:now, content:`FULLFØRT
+========
+
+GK AUTOMATION (live systemer)
+✅ AI Email Responder — live
+✅ Contact Form — live
+✅ Filesystem MCP — live
+AIONOVIA-FILER
+✅ Clickable prototype (7 sider + loading screen + tone-deteksjon)
+✅ Byggeplan AI Marketplace
+✅ Investordokument — pitch-dokument med tall, potensial og forretningsmodell for investorer
+✅ Notatdokument opprettet med utgiftsoversikt
+
+DOMENE & MERKEVARE
+✅ aionovia.com kjøpt på Namecheap — $6.99/år, ordre #204298282
+✅ @aionovia sikret på Instagram og TikTok
+☐ Lag Aionovia Company Page på LinkedIn` },
+      { id:3, title:'📋 Neste steg — TODO', category:'oppgaver', created:now, updated:now, content:`PRIORITERT TODO-LISTE
+=====================
+
+HØY PRIORITET
+✅ aionovia.com kjøpt på Namecheap — $6.99/år, ordre #204298282
+☐ Registrer Aionovia hos Patentstyret.no (~2500 kr)
+☐ Møt Ole Andre Torjussen fysisk — Lucas & Vetle går sammen når prototype og plan er klar
+☐ Del prototype + byggeplan med Vetle (Google Drive)
+☐ Sett opp felles møte med Vetle om Aionovia
+
+MELLOM PRIORITET
+☐ Fortsett AI Intelligence Brief i n8n
+☐ Oppsøk 3 regnskapsbyråer fysisk denne uken (GK Automation)
+☐ Lag Aionovia Company Page på LinkedIn
+
+LAV PRIORITET
+☐ Utvid prototype med flere agenter
+✅ Investordokument laget` },
+      { id:4, title:'💡 Ole Andre Torjussen — møte', category:'møter', created:now, updated:now, content:`OLE ANDRE TORJUSSEN — BYGG-KON AS
+====================================
+
+HVEM ER HAN?
+• CEO Bygg-Kon AS, Stavanger
+• Huset hans er fullt AI-automatisert — norsk "Tony Stark"
+
+BAKGRUNN
+• Vetle møtte ham for 1+ måned siden
+• Ole Andre ba dem lære n8n, MCP, webhooks og komme tilbake om 2 uker
+• Vetle har IKKE fulgt opp ennå
+• Lucas og Vetle skal fikse møtet SAMMEN
+
+LINKEDIN-MELDING (klar til sending)
+"Hei Ole Andre! Jeg heter Lucas Gardner, kompisen til Vetle.
+Siden samtalen deres har jeg bygget 4 fungerende AI-systemer live —
+AI email-responder, daglig crypto-brief kl. 07:00 og MCP-integrasjon.
+Hadde vært kult å ta en kaffe!"
+
+STATUS: ☐ Ikke sendt ennå` },
+      { id:5, title:'📣 Catchy linjer — Aionovia', category:'ideer', created:now, updated:now, content:`AIONOVIA MARKETING LINJER
+=========================
+
+• "Stop doing. Start automating."
+• "Download an agent. Go home early."
+• "Setup takes less time than your morning coffee."
+• "Less than a lunch. More than a full-time employee."
+• "Your competitors are already automating."
+• "AI that works while you sleep."
+• "If you can click, you can automate."
+• "Build once. Run forever."
+
+PRISER (til markedsføring)
+• "Fra 99 kr i måneden"
+• "Sett opp på under 60 sekunder"
+• "Ingen kode nødvendig"` }
+    ];
+    saveNotes();
+  }
+  renderList();
+  if (notes.length > 0) openNote(notes[0].id);
+}
+
+function saveNotes() { localStorage.setItem('aionovia_notes_v2', JSON.stringify(notes)); }
+
+function saveCurrentNote() {
+  if (currentId === null) return;
+  const note = notes.find(n => n.id === currentId);
+  if (!note) return;
+  note.title = document.getElementById('noteTitle').value || 'Uten tittel';
+  note.content = document.getElementById('noteContent').value;
+  note.category = document.getElementById('noteCategory').value;
+  note.updated = new Date().toISOString();
+  saveNotes(); renderList(); markSaved();
+}
+
+function markUnsaved() {
+  document.getElementById('saveDot').className = 'save-dot unsaved';
+  document.getElementById('saveText').textContent = 'Ikke lagret';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveCurrentNote, 1500);
+}
+function markSaved() {
+  document.getElementById('saveDot').className = 'save-dot';
+  document.getElementById('saveText').textContent = 'Lagret';
+}
+
+function renderList(filter='') {
+  const list = document.getElementById('notesList');
+  const filtered = notes.filter(n =>
+    n.title.toLowerCase().includes(filter.toLowerCase()) ||
+    n.content.toLowerCase().includes(filter.toLowerCase())
+  ).sort((a,b) => new Date(b.updated)-new Date(a.updated));
+  list.innerHTML = filtered.map(n => `
+    <div class="note-item ${n.id===currentId?'active':''}" onclick="openNote(${n.id})">
+      <div class="note-category cat-${n.category}">${catLabel(n.category)}</div>
+      <div class="note-item-title">${escHtml(n.title)}</div>
+      <div class="note-item-preview">${escHtml(n.content.substring(0,60))||'Tomt notat'}</div>
+      <div class="note-item-date">${formatDate(n.updated)}</div>
+    </div>`).join('');
+  document.getElementById('noteCount').textContent = `${notes.length} notat${notes.length!==1?'er':''}`;
+}
+
+function openNote(id) {
+  if (currentId!==null) saveCurrentNote();
+  currentId = id;
+  const note = notes.find(n=>n.id===id);
+  if (!note) return;
+  document.getElementById('noteTitle').value = note.title;
+  document.getElementById('noteContent').value = note.content;
+  document.getElementById('noteCategory').value = note.category;
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('editorPanel').style.display = 'flex';
+  renderList(); markSaved();
+}
+
+function newNote() {
+  if (currentId!==null) saveCurrentNote();
+  const note = { id:Date.now(), title:'', content:'', category:'ideer', created:new Date().toISOString(), updated:new Date().toISOString() };
+  notes.unshift(note); saveNotes(); openNote(note.id);
+  setTimeout(()=>document.getElementById('noteTitle').focus(),50);
+}
+
+function deleteCurrentNote() {
+  if (currentId===null) return;
+  if (!confirm('Slette dette notatet?')) return;
+  notes = notes.filter(n=>n.id!==currentId);
+  saveNotes(); currentId=null; renderList();
+  if (notes.length>0) { openNote(notes[0].id); }
+  else { document.getElementById('emptyState').style.display='flex'; document.getElementById('editorPanel').style.display='none'; }
+}
+
+function searchNotes(val) { renderList(val); }
+
+function exportNotes() {
+  const text = notes.map(n=>`# ${n.title}\nKategori: ${catLabel(n.category)}\n\n${n.content}\n\n---\n`).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));
+  a.download = 'Aionovia_Notater.txt'; a.click();
+}
+
+// ══════════════════════════════════════
+// EXPENSES
+// ══════════════════════════════════════
+let expenses = [];
+
+function loadExpenses() {
+  const saved = localStorage.getItem('aionovia_expenses_v2');
+  if (saved) {
+    expenses = JSON.parse(saved);
+  } else {
+    expenses = [
+      { id:1, desc:'aionovia.com domene (Namecheap)', amt:72, cat:'Domene', who:'Lucas', date:new Date().toISOString() }
+    ];
+    saveExpenses();
+  }
+}
+
+function saveExpenses() { localStorage.setItem('aionovia_expenses_v2', JSON.stringify(expenses)); }
+
+function addExpense() {
+  const desc = document.getElementById('exp-desc').value.trim();
+  const amt = parseFloat(document.getElementById('exp-amount').value);
+  const cat = document.getElementById('exp-cat').value;
+  const who = document.getElementById('exp-who').value;
+  if (!desc || isNaN(amt) || amt<=0) { alert('Fyll inn beskrivelse og beløp'); return; }
+  expenses.unshift({ id:Date.now(), desc, amt, cat, who, date:new Date().toISOString() });
+  saveExpenses();
+  document.getElementById('exp-desc').value='';
+  document.getElementById('exp-amount').value='';
+  renderExpenses();
+}
+
+function deleteExpense(id) {
+  if (!confirm('Slette denne utgiften?')) return;
+  expenses = expenses.filter(e=>e.id!==id);
+  saveExpenses(); renderExpenses();
+}
+
+function renderExpenses() {
+  const total = expenses.reduce((s,e)=>s+e.amt,0);
+  const lucas = expenses.filter(e=>e.who==='Lucas').reduce((s,e)=>s+e.amt,0);
+  const vetle = expenses.filter(e=>e.who==='Vetle').reduce((s,e)=>s+e.amt,0);
+  const split = total/2;
+  const diff = lucas - vetle;
+
+  document.getElementById('exp-total').textContent = fmtKr(total);
+  document.getElementById('exp-lucas').textContent = fmtKr(lucas);
+  document.getElementById('exp-vetle').textContent = fmtKr(vetle);
+  document.getElementById('exp-split').textContent = fmtKr(split);
+
+  let balanceHtml;
+  if (total === 0) {
+    balanceHtml = '<span style="color:#9ca3af">Ingen utgifter ennå</span>';
+  } else if (Math.abs(diff) < 1) {
+    balanceHtml = '<span style="color:#22c55e">✓ Dere er kvitt! Begge har betalt nøyaktig like mye.</span>';
+  } else if (diff > 0) {
+    balanceHtml = `<span style="color:#f59e0b">⚖️ Vetle skylder Lucas <strong>${fmtKr(diff/2)}</strong> for å utjevne spliten</span>`;
+  } else {
+    balanceHtml = `<span style="color:#f59e0b">⚖️ Lucas skylder Vetle <strong>${fmtKr(Math.abs(diff)/2)}</strong> for å utjevne spliten</span>`;
+  }
+  document.getElementById('exp-balance').innerHTML = balanceHtml;
+
+  const list = document.getElementById('expense-list');
+  if (expenses.length===0) {
+    list.innerHTML = '<div style="text-align:center;padding:40px;color:#9ca3af;font-size:14px;">Ingen utgifter ennå — legg til den første!</div>';
+    return;
+  }
+  list.innerHTML = expenses.map(e=>`
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #f0f2ff;">
+      <div style="flex:1;">
+        <div style="font-size:14px;font-weight:600;">${escHtml(e.desc)}</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:2px;">
+          <span style="background:rgba(79,110,247,0.08);color:#4f6ef7;padding:2px 8px;border-radius:4px;font-weight:600;font-size:10px;">${e.cat}</span>
+          &nbsp;·&nbsp; Betalt av <strong>${e.who}</strong> &nbsp;·&nbsp; ${formatDate(e.date)}
+        </div>
+      </div>
+      <div style="font-size:18px;font-weight:700;color:#4f6ef7;">${fmtKr(e.amt)}</div>
+      <button onclick="deleteExpense(${e.id})" style="border:none;background:none;color:#ef4444;cursor:pointer;font-size:18px;padding:4px 8px;border-radius:6px;" title="Slett">×</button>
+    </div>`).join('');
+}
+
+function fmtKr(n) {
+  return 'kr ' + Math.round(n).toLocaleString('no-NO');
+}
+
+// ══════════════════════════════════════
+// TABS
+// ══════════════════════════════════════
+function showTab(tab) {
+  document.getElementById('tab-notater').style.display = tab==='notater' ? 'flex' : 'none';
+  document.getElementById('tab-utgifter').style.display = tab==='utgifter' ? 'block' : 'none';
+  document.getElementById('btn-notater').className = 'tab-btn' + (tab==='notater'?' active':'');
+  document.getElementById('btn-utgifter').className = 'tab-btn' + (tab==='utgifter'?' active':'');
+  document.getElementById('save-btn').style.display = tab==='notater' ? '' : 'none';
+  if (tab==='utgifter') renderExpenses();
+}
+
+// ══════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════
+function catLabel(cat) { return {ideer:'Ideer',møter:'Møter',oppgaver:'Oppgaver',annet:'Annet'}[cat]||cat; }
+function formatDate(iso) {
+  const d = new Date(iso), now = new Date(), diff=(now-d)/1000;
+  if (diff<60) return 'Akkurat nå';
+  if (diff<3600) return `${Math.floor(diff/60)} min siden`;
+  if (diff<86400) return `${Math.floor(diff/3600)} t siden`;
+  return d.toLocaleDateString('no-NO',{day:'numeric',month:'short'});
+}
+function escHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+document.addEventListener('keydown', e => {
+  if ((e.metaKey||e.ctrlKey) && e.key==='s') { e.preventDefault(); saveCurrentNote(); }
+  if ((e.metaKey||e.ctrlKey) && e.key==='n') { e.preventDefault(); newNote(); }
+});
+
+loadNotes();
+loadExpenses();
+</script>
+</body>
+</html>

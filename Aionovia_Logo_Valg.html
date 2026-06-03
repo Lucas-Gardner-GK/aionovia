@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aionovia — Logo Alternativer</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Plus Jakarta Sans',sans-serif; background:#e8ecf7; color:#1a1d2e; padding:48px; }
+h1 { font-size:32px; font-weight:700; letter-spacing:-1px; margin-bottom:8px; }
+.sub { font-size:15px; color:#6b7280; margin-bottom:48px; }
+.grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; max-width:1100px; }
+.card { background:#ffffff; border:1.5px solid #dde1f0; border-radius:16px; padding:28px; display:flex; flex-direction:column; align-items:center; gap:16px; cursor:pointer; transition:all .2s; }
+.card:hover { border-color:#4f6ef7; transform:translateY(-3px); box-shadow:0 8px 32px rgba(79,110,247,0.12); }
+.card.selected { border-color:#4f6ef7; border-width:2px; background:#f5f7ff; }
+.card svg { width:120px; height:120px; }
+.card-num { font-size:11px; font-weight:700; letter-spacing:2px; color:#9ca3af; text-transform:uppercase; }
+.card-name { font-size:14px; font-weight:600; text-align:center; }
+.card-desc { font-size:12px; color:#9ca3af; text-align:center; line-height:1.5; }
+.badge { position:absolute; top:12px; right:12px; background:#4f6ef7; color:white; font-size:10px; font-weight:700; padding:4px 10px; border-radius:20px; display:none; }
+.card { position:relative; }
+.card.selected .badge { display:block; }
+.footer { margin-top:48px; max-width:1100px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.footer-note { font-size:13px; color:#9ca3af; }
+.selected-label { font-size:14px; font-weight:600; color:#4f6ef7; }
+</style>
+</head>
+<body>
+
+<h1>Aionovia — Logo Alternativer</h1>
+<p class="sub">Klikk på en logo for å markere favorittene dine. Vis denne til Vetle og bestem dere sammen.</p>
+
+<div class="grid">
+
+  <!-- 1. A+bolt over hex — mørk -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">01 — Nyeste</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#0f172a"/>
+      <polygon points="60,10 103,34 103,83 60,107 17,83 17,34" fill="#4f6ef7"/>
+      <polygon points="60,19 91,96 76,96 60,54 44,96 29,96" fill="#0f172a"/>
+      <polygon points="48,65 72,65 68,75 52,75" fill="#4f6ef7"/>
+      <polygon points="69,24 58,57 67,57 53,96 78,96 89,63 80,63 92,24" fill="white"/>
+    </svg>
+    <div class="card-name">A + bolt over sekskant</div>
+    <div class="card-desc">Mørk bakgrunn, blå sekskant, hvit bolt</div>
+  </div>
+
+  <!-- 2. A+bolt over hex — blå -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">02</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#4f6ef7"/>
+      <polygon points="60,10 103,34 103,83 60,107 17,83 17,34" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+      <polygon points="60,19 91,96 76,96 60,54 44,96 29,96" fill="#0f172a"/>
+      <polygon points="48,65 72,65 68,75 52,75" fill="#4f6ef7"/>
+      <polygon points="69,24 58,57 67,57 53,96 78,96 89,63 80,63 92,24" fill="#0ea5e9"/>
+    </svg>
+    <div class="card-name">A + bolt over sekskant</div>
+    <div class="card-desc">Blå bakgrunn, cyan bolt</div>
+  </div>
+
+  <!-- 3. Sekskant stikker ut bak A -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">03</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#0f172a"/>
+      <polygon points="60,7 103,31 103,85 60,109 17,85 17,31" fill="#4f6ef7"/>
+      <polygon points="60,16 93,96 76,96 60,53 44,96 27,96" fill="#0f172a"/>
+      <polygon points="47,65 73,65 69,75 51,75" fill="#4f6ef7"/>
+      <polygon points="70,22 58,57 67,57 53,96 78,96 90,61 81,61 93,22" fill="white"/>
+    </svg>
+    <div class="card-name">Sekskant bak A</div>
+    <div class="card-desc">Mørk, sekskant stikker ut, hvit bolt</div>
+  </div>
+
+  <!-- 4. Mørk bg, blå hex bak A, blå bolt -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">04</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#0f172a"/>
+      <polygon points="60,10 103,34 103,83 60,107 17,83 17,34" fill="#4f6ef7" opacity="0.25"/>
+      <polygon points="60,10 103,34 103,83 60,107 17,83 17,34" fill="none" stroke="#4f6ef7" stroke-width="2" opacity="0.6"/>
+      <polygon points="60,19 91,96 76,96 60,54 44,96 29,96" fill="white"/>
+      <polygon points="48,65 72,65 68,75 52,75" fill="#0f172a"/>
+      <polygon points="69,24 58,57 67,57 53,96 78,96 89,63 80,63 92,24" fill="#4f6ef7"/>
+    </svg>
+    <div class="card-name">Hex-kontur bak A</div>
+    <div class="card-desc">Mørk, hvit A, blå bolt</div>
+  </div>
+
+  <!-- 5. Blå bg, hvit A, cyan bolt, hex kontur -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">05</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#4f6ef7"/>
+      <polygon points="60,10 103,34 103,83 60,107 17,83 17,34" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+      <polygon points="60,18 91,96 76,96 60,54 44,96 29,96" fill="white"/>
+      <polygon points="48,65 72,65 68,75 52,75" fill="#4f6ef7"/>
+      <polygon points="69,23 58,56 67,56 53,96 78,96 89,62 80,62 91,23" fill="#0ea5e9" opacity="0.95"/>
+    </svg>
+    <div class="card-name">Blå bakgrunn, hvit A</div>
+    <div class="card-desc">Blå bg, hvit A, cyan bolt, hex kontur</div>
+  </div>
+
+  <!-- 6. A med lynbolt -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">06</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#0f172a"/>
+      <polygon points="60,14 91,89 74,89 60,54 46,89 29,89" fill="#4f6ef7"/>
+      <polygon points="47,62 73,62 69,73 51,73" fill="#0f172a"/>
+      <polygon points="69,22 57,55 66,55 52,89 75,89 87,57 77,57 89,22" fill="white" opacity="0.92"/>
+    </svg>
+    <div class="card-name">Stilisert A med lynbolt</div>
+    <div class="card-desc">Energi og fart, ingen sekskant</div>
+  </div>
+
+  <!-- 7. Sekskant nedlasting -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">07</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#4f6ef7"/>
+      <polygon points="60,12 101,35 101,81 60,104 19,81 19,35" fill="#6a85f8" opacity="0.35"/>
+      <rect x="52" y="26" width="16" height="38" rx="4" fill="white"/>
+      <polygon points="37,60 60,89 83,60" fill="white"/>
+      <rect x="36" y="91" width="48" height="6" rx="3" fill="white" opacity="0.55"/>
+    </svg>
+    <div class="card-name">Sekskant / nedlasting</div>
+    <div class="card-desc">Blå, pil ned, ett klikk og installert</div>
+  </div>
+
+  <!-- 8. Tap-ikon -->
+  <div class="card" onclick="toggle(this)">
+    <div class="badge">✓ Valgt</div>
+    <div class="card-num">08 — Eldste</div>
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="120" rx="26" fill="#0f172a"/>
+      <rect x="48" y="26" width="19" height="49" rx="10" fill="white"/>
+      <rect x="69" y="38" width="17" height="37" rx="8" fill="white" opacity="0.6"/>
+      <rect x="31" y="60" width="57" height="36" rx="12" fill="white"/>
+      <line x1="57" y1="17" x2="57" y2="6"  stroke="#4f6ef7" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="39" y1="23" x2="31" y2="15" stroke="#4f6ef7" stroke-width="3" stroke-linecap="round"/>
+      <line x1="76" y1="18" x2="84" y2="10" stroke="#4f6ef7" stroke-width="3" stroke-linecap="round"/>
+      <line x1="27" y1="36" x2="16" y2="34" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="91" y1="30" x2="102" y2="25" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <div class="card-name">Tap-ikon</div>
+    <div class="card-desc">Hånd som trykker med gnister, one tap</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-note">Klikk for å markere favoritter — vis til Vetle og bestem dere sammen 💪</div>
+  <div class="selected-label" id="selected-count">0 valgt</div>
+</div>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('selected');
+  const count = document.querySelectorAll('.card.selected').length;
+  document.getElementById('selected-count').textContent = count > 0 ? count + ' valgt' : '0 valgt';
+}
+</script>
+</body>
+</html>

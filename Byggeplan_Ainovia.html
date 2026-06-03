@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byggeplan — AI Marketplace App</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; color: #0f172a; max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; background: #fafafa; }
+  h1 { font-size: 32px; border-bottom: 3px solid #1a472a; padding-bottom: 12px; margin-bottom: 8px; }
+  .subtitle { color: #64748b; font-size: 16px; margin-bottom: 8px; }
+  .meta { color: #94a3b8; font-size: 13px; margin-bottom: 40px; }
+  h2 { font-size: 20px; color: #1a472a; margin-top: 48px; border-left: 4px solid #1a472a; padding-left: 12px; }
+  h3 { font-size: 16px; margin-top: 20px; color: #1e293b; }
+  .phase { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 24px 28px; margin: 20px 0; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .phase-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+  .badge { color: white; padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; }
+  .b1 { background: #1a472a; } .b2 { background: #c8a84b; } .b3 { background: #1e40af; } .b4 { background: #7c3aed; } .b5 { background: #dc2626; } .b6 { background: #0f172a; }
+  .phase-title { font-size: 18px; font-weight: 700; }
+  .phase-time { color: #64748b; font-size: 13px; font-style: italic; margin-left: auto; white-space: nowrap; }
+  ul { padding-left: 20px; margin: 10px 0; }
+  li { margin-bottom: 7px; font-size: 14px; color: #334155; line-height: 1.6; }
+  li strong { color: #0f172a; }
+  .highlight { background: #f0fdf4; border-left: 4px solid #1a472a; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #166534; line-height: 1.8; }
+  .gold-box { background: #fffbeb; border-left: 4px solid #c8a84b; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #92400e; line-height: 1.8; }
+  .blue-box { background: #eff6ff; border-left: 4px solid #1e40af; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #1e3a8a; line-height: 1.8; }
+  .red-box { background: #fef2f2; border-left: 4px solid #dc2626; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #991b1b; line-height: 1.8; }
+  .purple-box { background: #f5f3ff; border-left: 4px solid #7c3aed; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #4c1d95; line-height: 1.8; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; }
+  .box h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #1a472a; margin-bottom: 10px; font-weight: 700; }
+  .box ul { padding-left: 16px; margin: 0; }
+  .box li { font-size: 13px; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+  th { background: #1a472a; color: white; padding: 10px 14px; text-align: left; font-size: 12px; letter-spacing: 0.5px; }
+  td { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .big-quote { font-size: 18px; font-weight: 700; color: #1a472a; border: 2px solid #1a472a; border-radius: 10px; padding: 20px 24px; margin: 20px 0; line-height: 1.6; }
+  .stack-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #f8fafc; border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
+  .stack-icon { font-size: 20px; width: 28px; text-align: center; }
+  .stack-name { font-weight: 600; min-width: 140px; }
+  .stack-desc { color: #64748b; font-size: 13px; }
+  .catchphrase { background: #1e293b; color: #f8fafc; border-radius: 10px; padding: 18px 24px; margin: 8px 0; font-size: 15px; font-style: italic; font-weight: 500; }
+  .catchphrase span { color: #4f6ef7; }
+  @media print { body { background: white; padding: 20px; } .phase { box-shadow: none; border: 1px solid #ddd; } }
+</style>
+</head>
+<body>
+
+<h1>Byggeplan — AI Marketplace</h1>
+<div class="subtitle">App Store for AI-automasjoner, agenter og verktøy</div>
+<div class="meta">Lucas Gardner · GK Automation · Stavanger · Juni 2026 · Konfidensielt</div>
+
+<h2>💡 Hva er dette?</h2>
+<div class="phase">
+  <div class="big-quote">
+    En plattform der hvem som helst kan laste opp sine AI-automasjoner, agenter og verktøy — og tjene penger på det. Brukere betaler månedlig abonnement for tilgang. Creators får betalt per nedlasting. Du tar en cut av alt.
+  </div>
+  <div class="two-col">
+    <div class="box">
+      <h4>For brukere (consumers)</h4>
+      <ul>
+        <li>Laster ned ferdige AI-agenter med ett trykk</li>
+        <li>Månedlig abonnement gir tilgang til biblioteket</li>
+        <li>Høyere plan = tilgang til mer avanserte verktøy</li>
+        <li>Fungerer for både privatpersoner og bedrifter</li>
+        <li>Smart tone-deteksjon basert på bransje</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>For creators</h4>
+      <ul>
+        <li>Creator-konto for å laste opp egne agenter</li>
+        <li>Betalt per nedlasting — progressiv splitt</li>
+        <li>Kan selge alt — automasjoner, agenter, AI-tvillinger</li>
+        <li>Offentlig leaderboard — flest nedlastinger = best betalt</li>
+        <li>Du godkjenner hva som publiseres</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight">
+    Dette finnes ikke på norsk, og ikke med fokus på norske bedrifter og norsk arbeidsliv. Det er din nisje.
+  </div>
+</div>
+
+<h2>🏷️ Navn</h2>
+<div class="phase">
+  <p style="font-size:14px;color:#334155;margin-bottom:14px;">Navnet <strong>Aionovia</strong> er valgt og domenet <strong>aionovia.com</strong> er kjøpt. AI + nova = ny era.</p>
+  <div style="background:#f0fff4;border:1.5px solid #bbf7d0;border-radius:10px;padding:20px;margin-top:8px;">
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;color:#374151;">
+      <li>🌐 <strong>aionovia.com</strong> kjøpt på Namecheap — $6.99/år (ordre #204298282)</li>
+      <li>📱 <strong>@aionovia</strong> sikret på Instagram og TikTok</li>
+      <li>💡 AI + nova = ny era — enkelt, globalt og unikt</li>
+      <li>⏳ Neste: Registrer som varemerke hos Patentstyret.no (~2500 kr)</li>
+    </ul>
+  </div>
+</div>
+
+<h2>🎯 Markedsposisjonering — Catchy linjer</h2>
+<div class="phase">
+  <p style="font-size:14px;color:#334155;margin-bottom:14px;">Disse linjene er utviklet for å kommunisere verdien raskt og minneverdig. Brukes på nettsiden, i pitcher og i markedsføring:</p>
+  <div class="catchphrase">"<span>Stop doing.</span> Start automating."</div>
+  <div class="catchphrase">"Download an agent. <span>Go home early.</span>"</div>
+  <div class="catchphrase">"Setup takes less time than <span>your morning coffee.</span>"</div>
+  <div class="catchphrase">"Less than a lunch. <span>More than a full-time employee.</span>"</div>
+  <div class="catchphrase">"AI that works <span>while you sleep.</span>"</div>
+  <div class="catchphrase">"Your competitors <span>are already automating.</span>"</div>
+  <div class="catchphrase">"Build once. <span>Get paid forever.</span>"</div>
+</div>
+
+<h2>🖥️ Prototype — Nettside demo</h2>
+<div class="phase">
+  <div class="phase-header">
+    <span class="badge b3">GJORT</span>
+    <span class="phase-title">Fungerende clickable prototype bygget</span>
+  </div>
+  <p style="font-size:14px;color:#334155;margin-bottom:14px;">En fullstendig HTML-prototype er bygget og ligger på Desktop. Den demonstrerer hele brukeropplevelsen uten å være en ekte app.</p>
+  <h3>Hva prototypen inneholder</h3>
+  <ul>
+    <li><strong>Hjemside</strong> — hero med catchy linjer, stats-bar, how it works og populære agenter</li>
+    <li><strong>Marketplace</strong> — søk, filtre og 6 agenter med rating og nedlastingstall</li>
+    <li><strong>Pricing</strong> — 3 planer (Starter 99 kr / Pro 299 kr / Business 799 kr)</li>
+    <li><strong>For Creators</strong> — progressiv inntektsmodell med leaderboard-konsept</li>
+    <li><strong>How it works</strong> — installasjonsskjema med smart tone-deteksjon</li>
+    <li><strong>Fake loading screen</strong> — 9-sekunders nedlastingsbar med roterende catchy linjer</li>
+    <li><strong>Success-side</strong> — bekreftelse med sammendrag etter installasjon</li>
+  </ul>
+  <h3>Smart tone-deteksjon</h3>
+  <p style="font-size:14px;color:#334155;">Når bedriften skriver inn navnet sitt (f.eks. "Stavanger Regnskap AS") oppdager appen automatisk bransjen og foreslår en ferdig tone-preset for kommunikasjon. Støtter 8 bransjer: regnskap, jus, bygg, eiendom, helse, restaurant, tech og transport.</p>
+  
+</div>
+
+<h2>💰 Forretningsmodellen</h2>
+<div class="phase">
+  <h3>Bruker-abonnement</h3>
+  <table>
+    <tr><th>Plan</th><th>Pris</th><th>Tilgang</th></tr>
+    <tr><td><strong>Starter</strong></td><td>99 kr/mnd</td><td>Gratis og basis-agenter. Maks 5 nedlastinger/mnd.</td></tr>
+    <tr><td><strong>Pro</strong></td><td>299 kr/mnd</td><td>Ubegrenset nedlastinger, alle agenter inkl. premium.</td></tr>
+    <tr><td><strong>Business</strong></td><td>799 kr/mnd</td><td>Alt i Pro + team-tilgang, tilpassede agenter, SLA.</td></tr>
+  </table>
+
+  <h3>Creator-inntekt — Progressiv splitt</h3>
+  <table>
+    <tr><th>Tier</th><th>Nedlastinger</th><th>Creator får</th><th>Plattformen får</th></tr>
+    <tr><td>Starter</td><td>0 – 499</td><td>70%</td><td>30%</td></tr>
+    <tr><td>Rising</td><td>500 – 1 999</td><td>73%</td><td>27%</td></tr>
+    <tr><td>Pro</td><td>2 000 – 9 999</td><td>75%</td><td>25%</td></tr>
+    <tr><td>Elite</td><td>10 000 – 49 999</td><td>78%</td><td>22%</td></tr>
+    <tr><td>★ Top Creator</td><td>50 000+</td><td>80%</td><td>20%</td></tr>
+  </table>
+  <div class="highlight">
+    Med 500 Pro-brukere × 299 kr = <strong>149 500 kr/mnd</strong> i abonnement. I tillegg 30% av creator-inntekter. Med 100 aktive creators som tjener 10 000 kr/mnd = 300 000 kr ekstra.
+  </div>
+</div>
+
+<h2>🏗️ Byggeplan — Fase for fase</h2>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="badge b1">Fase 1</span>
+    <span class="phase-title">Konsept og validering</span>
+    <span class="phase-time">Jun–Aug 2026</span>
+  </div>
+  <p style="font-size:14px;color:#334155;">Ikke skriv én linje kode ennå. Bevis at folk vil betale.</p>
+  <ul>
+    <li><strong>Prototype klar</strong> ✅ — brukes til å vise konseptet til potensielle brukere og investorer</li>
+    <li><strong>Snakk med 20 potensielle brukere</strong> — hva mangler i AI-hverdagen deres?</li>
+    <li><strong>Snakk med 10 potensielle creators</strong> — ville de lastet opp automasjonene sine?</li>
+    <li><strong>Møte med Ole Andre</strong> — research, ikke pitch. Han kjenner bygg-bransjen og vet hva de trenger.</li>
+    <li><strong>Velg nisje</strong> — start med bygg/eiendom eller regnskap/juridisk</li>
+    <li><strong>Sett opp landingsside</strong> — samle e-poster. Mål: 100 interesserte = bevis på interesse.</li>
+  </ul>
+  <div class="gold-box">Prototypen er det sterkeste kortet i denne fasen — vis den, ikke beskriv den.</div>
+</div>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="badge b2">Fase 2</span>
+    <span class="phase-title">MVP — Minimal fungerende versjon</span>
+    <span class="phase-time">Sep–Des 2026</span>
+  </div>
+  <ul>
+    <li><strong>Brukerkontoer</strong> — registrering, innlogging, abonnement</li>
+    <li><strong>Agent-bibliotek med 10–20 agenter</strong> — bygget av deg selv for å starte</li>
+    <li><strong>Én-klikk installasjon</strong> — agenten kobles til bedriften automatisk</li>
+    <li><strong>Betalingssystem via Stripe</strong> — månedlig abonnement</li>
+    <li><strong>Creator-upload</strong> — enkel opplasting av agenter</li>
+    <li><strong>Smart tone-deteksjon</strong> — allerede designet i prototypen</li>
+  </ul>
+  <h3>Teknisk stack</h3>
+  <div class="stack-row"><span class="stack-icon">📱</span><span class="stack-name">React Native</span><span class="stack-desc">Én app for iPhone og Android</span></div>
+  <div class="stack-row"><span class="stack-icon">🌐</span><span class="stack-name">Next.js</span><span class="stack-desc">Web-versjon — for desktop-brukere</span></div>
+  <div class="stack-row"><span class="stack-icon">🗄️</span><span class="stack-name">Supabase</span><span class="stack-desc">Database og brukerkontoer — gratis å starte</span></div>
+  <div class="stack-row"><span class="stack-icon">💳</span><span class="stack-name">Stripe</span><span class="stack-desc">Abonnement og creator-utbetalinger</span></div>
+  <div class="stack-row"><span class="stack-icon">☁️</span><span class="stack-name">Vercel / Railway</span><span class="stack-desc">Hosting av backend og web</span></div>
+  <div class="stack-row"><span class="stack-icon">🤖</span><span class="stack-name">n8n + MCP</span><span class="stack-desc">Motoren i agentene — allerede mestret av Lucas</span></div>
+  <div class="stack-row"><span class="stack-icon">📦</span><span class="stack-name">GitHub</span><span class="stack-desc">Kodelagring og deploy</span></div>
+  <div class="blue-box">Lucas og Vetle kan n8n og MCP allerede. Det er kjernen. Det som mangler er frontend (React Native) og backend-infrastruktur — der trengs utviklere.</div>
+</div>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="badge b3">Fase 3</span>
+    <span class="phase-title">Beta-lansering</span>
+    <span class="phase-time">Jan–Feb 2027</span>
+  </div>
+  <ul>
+    <li>50–100 beta-brukere fra e-postlisten — gratis tilgang mot tilbakemelding</li>
+    <li>Rekrutter de første 5–10 creators</li>
+    <li>Fiks kritiske feil — ikke bygg nye funksjoner ennå</li>
+    <li>Dokumenter hvilke agenter som er mest populære</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="badge b4">Fase 4</span>
+    <span class="phase-title">Offentlig lansering</span>
+    <span class="phase-time">Mar 2027</span>
+  </div>
+  <ul>
+    <li>App Store og Google Play — simultanlansering</li>
+    <li>ProductHunt — kan gi 1 000–5 000 nye brukere på én dag</li>
+    <li>Norske tech-medier — Shifter, DN Tech</li>
+    <li>Ole Andres nettverk — gullverdt hvis møtet gikk bra</li>
+    <li>LinkedIn-kampanje mot norske bedriftsledere</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="badge b5">Fase 5</span>
+    <span class="phase-title">Vekst og skalering</span>
+    <span class="phase-time">2027–2028</span>
+  </div>
+  <ul>
+    <li>Aktiv creator-rekruttering — mer innhold = mer verdi</li>
+    <li>Enterprise-salg — store bedrifter betaler mye mer</li>
+    <li>Norden-ekspansjon — norsk nisje først, deretter Sverige og Danmark</li>
+    <li>API-tilgang for bedrifter som vil integrere plattformen</li>
+    <li>Automatisk AI-kvalitetskontroll av innsendte agenter</li>
+  </ul>
+</div>
+
+<h2>👥 Team</h2>
+<div class="phase">
+  <table>
+    <tr><th>Rolle</th><th>Hva de gjør</th><th>Når</th></tr>
+    <tr><td><strong>Lucas Gardner</strong> — CEO & Founder</td><td>Produkt, salg, AI-agenter, n8n/MCP, forretningsutvikling, nøkkelkontakter — ansikt utad</td><td>Nå</td></tr>
+    <tr><td><strong>Vetle Kolstad</strong> — CEO & Founder</td><td>Produkt, salg, AI-agenter, n8n/MCP, forretningsutvikling, nøkkelkontakter</td><td>Nå</td></tr>
+    <tr><td><strong>React Native-utvikler</strong></td><td>Bygge appen for iPhone og Android</td><td>Fase 2</td></tr>
+    <tr><td><strong>Backend-utvikler</strong></td><td>Supabase, API, sikkerhet og infrastruktur</td><td>Fase 2</td></tr>
+    <tr><td><strong>Designer</strong></td><td>UI/UX — appen må se like bra ut som den fungerer</td><td>Fase 2</td></tr>
+    <tr><td><strong>Strategic Partner / Investor</strong></td><td>Kapital, nettverk og bransjekunnskap</td><td>Fase 1–2</td></tr>
+  </table>
+  <div class="red-box">Utviklere er det største hoppet. En React Native-utvikler koster 800–1 500 kr/time i Norge. GK Automation-inntekten er direkte drivstoff til å finansiere dette.</div>
+</div>
+
+<h2>⚠️ Risikoer</h2>
+<div class="phase">
+  <ul>
+    <li><strong>Høna-og-egget-problemet</strong> — trenger brukere for creators og creators for brukere. Løsning: Lucas og Vetle bygger de første 20 agentene selv.</li>
+    <li><strong>Kvalitetskontroll</strong> — dårlige agenter skader omdømmet. Manuell godkjenning fra start.</li>
+    <li><strong>Store konkurrenter</strong> — Microsoft, Google, OpenAI kan lage noe lignende. Fordel: norsk nisje og hurtighet.</li>
+    <li><strong>GDPR og juridisk ansvar</strong> — krever advokatbistand tidlig.</li>
+    <li><strong>Kapital</strong> — byggefasen koster penger. GK Automation finansierer validering. Ekstern kapital trengs fra fase 2.</li>
+  </ul>
+</div>
+
+<h2>📊 Potensial</h2>
+<div class="phase">
+  <table>
+    <tr><th>Scenario</th><th>Brukere</th><th>Månedlig inntekt</th><th>Exit-verdi (3–5x ARR)</th></tr>
+    <tr><td>Konservativt</td><td>200</td><td>40 000 kr</td><td>1,4 – 2,4 mill kr</td></tr>
+    <tr><td>Realistisk</td><td>1 000</td><td>250 000 kr</td><td>9 – 15 mill kr</td></tr>
+    <tr><td>Optimistisk</td><td>100 000</td><td>30 000 000 kr</td><td>1 – 3 mrd kr</td></tr>
+  </table>
+  <div class="purple-box">Dette er ikke urealistisk for en AI-plattform i et voksende marked. Wellness-tech og AI-automatisering er blant de raskest voksende sektorene globalt — og ingen har gjort dette på norsk ennå.</div>
+</div>
+
+<div style="margin-top:48px;padding-top:24px;border-top:2px solid #e2e8f0;font-size:12px;color:#94a3b8;text-align:center;">
+  Lucas Gardner · GK Automation · Stavanger · Juni 2026 · Konfidensielt
+</div>
+
+</body>
+</html>
