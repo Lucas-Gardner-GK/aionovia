@@ -241,7 +241,7 @@ let currentId = null;
 let saveTimer = null;
 
 function loadNotes() {
-  const saved = localStorage.getItem('aionovia_notes_v2');
+  const saved = localStorage.getItem('aionovia_notes_v3');
   if (saved) {
     notes = JSON.parse(saved);
   } else {
@@ -278,8 +278,38 @@ FILER PÅ DESKTOP (/AIONOVIA-mappe)
 • Byggeplan_Aionovia.html — full byggeplan
 • Aionovia_Investordokument.html — pitch-dokument for investorer
 • Aionovia_Notater.html — dette dokumentet` },
-      { id:2, title:'✅ Hva er gjort så langt', category:'oppgaver', created:now, updated:now, content:`FULLFØRT
-========
+      { id:2, title:'✅ Hva er gjort så langt', category:'oppgaver', created:now, updated:now, content:`FULLFØRT — ONSDAG 3. JUNI 2026
+================================
+
+NAVN & DOMENE
+✅ Gikk gjennom mange navn — Ainova tatt, Ainovia tatt
+✅ Landet på Aionovia (AI + nova = ny era)
+✅ Opprettet konto på Namecheap
+✅ Kjøpt aionovia.com — $6.99/år, ordre #204298282
+✅ Sikret @aionovia på Instagram og TikTok
+
+FILER OPPDATERT
+✅ Alle tre filer byttet fra Ainovia → Aionovia
+✅ Prototype — navn og tekst oppdatert
+✅ Byggeplan — navneseksjon, teamroller likestilt, potensial skalert opp (10k/100k brukere), utdaterte bokser fjernet
+✅ Investordokument — roller fikset, klikk-bare risikoer lagt til, tekst oppdatert
+✅ Notatdokument — utgiftsfane med 50/50 split lagt til
+
+LOGO
+✅ Designet 8 logo-alternativer
+✅ Lagret i Aionovia_Logo_Valg.html — åpne og klikk på favoritter før møte med Vetle
+
+DELING MED VETLE
+✅ GitHub repo opprettet (github.com/Lucas-Gardner-GK/aionovia)
+✅ GitHub Pages aktivert — alle filer tilgjengelig som nettsider
+✅ Filer kopiert til iCloud Drive for syncing med Vetle
+✅ Snarvei til iCloud Drive-mappen laget på Desktop
+
+GK AUTOMATION (live systemer)
+✅ AI Email Responder — live
+✅ Contact Form — live
+✅ Filesystem MCP — live
+✅ Crypto Morning Brief — live (kl 07:00 → Slack #crypto-market)
 
 GK AUTOMATION (live systemer)
 ✅ AI Email Responder — live
@@ -294,7 +324,33 @@ AIONOVIA-FILER
 DOMENE & MERKEVARE
 ✅ aionovia.com kjøpt på Namecheap — $6.99/år, ordre #204298282
 ✅ @aionovia sikret på Instagram og TikTok
-☐ Lag Aionovia Company Page på LinkedIn` },
+☐ Lag Aionovia Company Page på LinkedIn
+
+DEL FILER MED VETLE (iCloud Drive)
+DU GJØR:
+☐ Åpne Finder → iCloud Drive
+☐ Høyreklikk AIONOVIA-mappen → Share → Collaborate
+☐ Velg AirDrop → Vetles Mac → Can make changes → Send
+
+VETLE GJØR:
+☐ Godta iCloud-inviten på sin Mac
+☐ Åpne Terminal og kjør:
+   ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/AIONOVIA ~/Desktop/AIONOVIA
+☐ Åpne Claude Desktop → Settings → MCP → legg til sti:
+   ~/Library/Mobile Documents/com~apple~CloudDocs/AIONOVIA
+
+DEL FILER MED VETLE (iCloud Drive)
+DU GJØR:
+☐ Åpne Finder → iCloud Drive
+☐ Høyreklikk AIONOVIA-mappen → Share → Collaborate
+☐ Velg AirDrop → velg Vetles Mac → Can make changes → Send
+
+VETLE GJØR:
+☐ Godta iCloud-inviten på sin Mac
+☐ Åpne Terminal og kjør:
+   ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/AIONOVIA ~/Desktop/AIONOVIA
+☐ Åpne Claude Desktop → Settings → MCP → legg til sti:
+   ~/Library/Mobile Documents/com~apple~CloudDocs/AIONOVIA` },
       { id:3, title:'📋 Neste steg — TODO', category:'oppgaver', created:now, updated:now, content:`PRIORITERT TODO-LISTE
 =====================
 
@@ -309,6 +365,32 @@ MELLOM PRIORITET
 ☐ Fortsett AI Intelligence Brief i n8n
 ☐ Oppsøk 3 regnskapsbyråer fysisk denne uken (GK Automation)
 ☐ Lag Aionovia Company Page på LinkedIn
+
+DEL FILER MED VETLE (iCloud Drive)
+DU GJØR:
+☐ Åpne Finder → iCloud Drive
+☐ Høyreklikk AIONOVIA-mappen → Share → Collaborate
+☐ Velg AirDrop → Vetles Mac → Can make changes → Send
+
+VETLE GJØR:
+☐ Godta iCloud-inviten på sin Mac
+☐ Åpne Terminal og kjør:
+   ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/AIONOVIA ~/Desktop/AIONOVIA
+☐ Åpne Claude Desktop → Settings → MCP → legg til sti:
+   ~/Library/Mobile Documents/com~apple~CloudDocs/AIONOVIA
+
+DEL FILER MED VETLE (iCloud Drive)
+DU GJØR:
+☐ Åpne Finder → iCloud Drive
+☐ Høyreklikk AIONOVIA-mappen → Share → Collaborate
+☐ Velg AirDrop → velg Vetles Mac → Can make changes → Send
+
+VETLE GJØR:
+☐ Godta iCloud-inviten på sin Mac
+☐ Åpne Terminal og kjør:
+   ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/AIONOVIA ~/Desktop/AIONOVIA
+☐ Åpne Claude Desktop → Settings → MCP → legg til sti:
+   ~/Library/Mobile Documents/com~apple~CloudDocs/AIONOVIA
 
 LAV PRIORITET
 ☐ Utvid prototype med flere agenter
@@ -356,7 +438,7 @@ PRISER (til markedsføring)
   if (notes.length > 0) openNote(notes[0].id);
 }
 
-function saveNotes() { localStorage.setItem('aionovia_notes_v2', JSON.stringify(notes)); }
+function saveNotes() { localStorage.setItem('aionovia_notes_v3', JSON.stringify(notes)); }
 
 function saveCurrentNote() {
   if (currentId === null) return;
@@ -551,6 +633,7 @@ document.addEventListener('keydown', e => {
 
 loadNotes();
 loadExpenses();
+
 </script>
 </body>
 </html>
