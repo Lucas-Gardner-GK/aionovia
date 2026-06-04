@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aionovia — Raske lenker</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Plus Jakarta Sans',sans-serif; background:#e8ecf7; color:#1a1d2e; min-height:100vh; padding:48px; }
+h1 { font-size:28px; font-weight:700; letter-spacing:-1px; margin-bottom:6px; }
+.sub { font-size:14px; color:#6b7280; margin-bottom:40px; }
+.section { margin-bottom:32px; }
+.section-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9ca3af; margin-bottom:12px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+.card { background:#ffffff; border:1.5px solid #dde1f0; border-radius:12px; padding:20px 24px; text-decoration:none; color:#1a1d2e; transition:all .2s; display:flex; align-items:center; gap:16px; }
+.card:hover { border-color:#4f6ef7; transform:translateY(-2px); box-shadow:0 4px 20px rgba(79,110,247,0.1); }
+.card-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+.card-body { flex:1; }
+.card-name { font-size:15px; font-weight:600; margin-bottom:3px; }
+.card-url { font-size:11px; color:#9ca3af; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px; }
+.workflow { background:#ffffff; border:1.5px solid #dde1f0; border-radius:14px; padding:28px; margin-top:8px; }
+.workflow h3 { font-size:16px; font-weight:700; margin-bottom:16px; }
+.step { display:flex; gap:14px; margin-bottom:14px; align-items:flex-start; }
+.step-num { width:28px; height:28px; border-radius:6px; background:#eff1ff; border:1.5px solid #c7d0fa; color:#4f6ef7; font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+.step-body { flex:1; }
+.step-title { font-size:14px; font-weight:600; margin-bottom:3px; }
+.step-desc { font-size:13px; color:#6b7280; line-height:1.6; }
+code { background:#f0f2ff; border:1px solid #c7d0fa; border-radius:4px; padding:2px 8px; font-size:12px; color:#4f6ef7; font-family:monospace; }
+.warning { background:#fef9ec; border:1.5px solid #fde68a; border-radius:10px; padding:14px 18px; margin-top:16px; font-size:13px; color:#92400e; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<h1>🚀 Aionovia — Raske lenker</h1>
+<p class="sub">Alle lenker og GitHub-flyt på ett sted</p>
+
+<!-- NETTSIDER -->
+<div class="section">
+  <div class="section-title">📄 Filer — åpne i nettleseren</div>
+  <div class="cards">
+    <a class="card" href="https://lucas-gardner-gk.github.io/aionovia/Ainovia_prototype.html" target="_blank">
+      <div class="card-icon" style="background:#eff1ff;">⚡</div>
+      <div class="card-body">
+        <div class="card-name">Prototype</div>
+        <div class="card-url">github.io/aionovia/prototype</div>
+      </div>
+    </a>
+    <a class="card" href="https://lucas-gardner-gk.github.io/aionovia/Byggeplan_Ainovia.html" target="_blank">
+      <div class="card-icon" style="background:#f0fdf4;">🏗️</div>
+      <div class="card-body">
+        <div class="card-name">Byggeplan</div>
+        <div class="card-url">github.io/aionovia/byggeplan</div>
+      </div>
+    </a>
+    <a class="card" href="https://lucas-gardner-gk.github.io/aionovia/Aionovia_Investordokument.html" target="_blank">
+      <div class="card-icon" style="background:#fff7ed;">💼</div>
+      <div class="card-body">
+        <div class="card-name">Investordokument</div>
+        <div class="card-url">github.io/aionovia/investor</div>
+      </div>
+    </a>
+    <a class="card" href="https://lucas-gardner-gk.github.io/aionovia/Aionovia_Logo_Valg.html" target="_blank">
+      <div class="card-icon" style="background:#fdf4ff;">🎨</div>
+      <div class="card-body">
+        <div class="card-name">Logo valg</div>
+        <div class="card-url">github.io/aionovia/logo</div>
+      </div>
+    </a>
+    <a class="card" href="https://lucas-gardner-gk.github.io/aionovia/Ainovia_Notater.html" target="_blank">
+      <div class="card-icon" style="background:#f0f9ff;">📝</div>
+      <div class="card-body">
+        <div class="card-name">Notater & Utgifter</div>
+        <div class="card-url">github.io/aionovia/notater</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- GITHUB -->
+<div class="section">
+  <div class="section-title">🐙 GitHub</div>
+  <div class="cards">
+    <a class="card" href="https://github.com/Lucas-Gardner-GK/aionovia" target="_blank">
+      <div class="card-icon" style="background:#f8f9fa;">🐙</div>
+      <div class="card-body">
+        <div class="card-name">GitHub repo</div>
+        <div class="card-url">github.com/Lucas-Gardner-GK/aionovia</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- FLYT -->
+<div class="section">
+  <div class="section-title">🔄 GitHub flyt — push & pull</div>
+  <div class="workflow">
+    <h3>Slik syncer du endringer med Vetle</h3>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Du redigerer en fil via Claude</div>
+        <div class="step-desc">Be Claude om å endre noe i en fil som vanlig.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Push til GitHub</div>
+        <div class="step-desc">Åpne Terminal og kjør:<br><br>
+        <code>cd ~/Desktop/AIONOVIA_snarvei && git add . && git commit -m "oppdatering" && git push</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Vetle henter endringene</div>
+        <div class="step-desc">Vetle kjører på sin Mac:<br><br>
+        <code>cd ~/Desktop/AIONOVIA && git pull</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Vetle redigerer og pusher</div>
+        <div class="step-desc">Vetle ber Claude redigere, pusher med samme kommando som steg 2.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">Du puller Vetles endringer</div>
+        <div class="step-desc">Du kjører:<br><br>
+        <code>cd ~/Desktop/AIONOVIA_snarvei && git pull</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="warning">
+      ⚠️ <strong>Viktig regel:</strong> Ikke rediger samme fil samtidig. Si til hverandre hva dere jobber med — "jeg tar prototype", "jeg tar notater" — så unngår dere konflikter.
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:32px;font-size:12px;color:#9ca3af;">Aionovia · GK Automation · Lucas & Vetle · 2026</div>
+
+</body>
+</html>
