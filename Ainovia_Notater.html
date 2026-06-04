@@ -504,7 +504,7 @@ function renderList(filter='') {
 }
 
 function openNote(id) {
-  if (currentId!==null) saveCurrentNote();
+  if (currentId!==null && currentId!==id) saveCurrentNote();
   currentId = id;
   const note = notes.find(n=>n.id===id);
   if (!note) return;
