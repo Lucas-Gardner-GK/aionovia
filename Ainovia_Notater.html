@@ -77,7 +77,11 @@ header {
 .delete-btn { padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1.5px solid #fca5a5; background: transparent; color: #ef4444; font-family: 'Plus Jakarta Sans', sans-serif; transition: all .2s; }
 .delete-btn:hover { background: #fef2f2; }
 .editor-content { flex: 1; padding: 32px 40px; overflow-y: auto; }
-.note-textarea { width: 100%; min-height: 100%; height: 600px; border: none; outline: none; resize: none; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.8; color: var(--text); background: transparent; }
+.note-textarea { width: 100%; min-height: 100%; height: 600px; border: none; outline: none; resize: none; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.8; color: var(--text); background: transparent; display:none; }
+.note-rendered { width: 100%; min-height: 600px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.8; color: var(--text); background: transparent; white-space: pre-wrap; word-break: break-word; }
+.note-rendered .check-done { color: #16a34a; font-weight: 600; }
+.note-rendered .check-todo { color: #9ca3af; }
+.note-rendered .section-header { font-weight: 700; color: var(--text); letter-spacing: 0.5px; }
 .note-textarea::placeholder { color: #c0c7d4; }
 .empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 40px; }
 .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
@@ -151,7 +155,8 @@ footer { background: #1e2235; border-top: 1px solid #2d3148; padding: 20px 48px;
         <button class="delete-btn" onclick="deleteCurrentNote()">Slett</button>
       </div>
       <div class="editor-content">
-        <textarea class="note-textarea" id="noteContent" placeholder="Skriv her... (Cmd+S for å lagre)" oninput="markUnsaved()"></textarea>
+        <textarea class="note-textarea" id="noteContent" placeholder="Skriv her... (Cmd+S for å lagre)" oninput="markUnsaved();renderNotePreview()" onblur="switchToPreview()"></textarea>
+        <div class="note-rendered" id="noteRendered" onclick="switchToEdit()"></div>
       </div>
     </div>
   </div>
@@ -509,7 +514,7 @@ function openNote(id) {
   const note = notes.find(n=>n.id===id);
   if (!note) return;
   document.getElementById('noteTitle').value = note.title;
-  document.getElementById('noteContent').value = note.content;
+  document.getElementById('noteContent').value = note.content; setTimeout(switchToPreview, 10);
   document.getElementById('noteCategory').value = note.category;
   document.getElementById('emptyState').style.display = 'none';
   document.getElementById('editorPanel').style.display = 'flex';
@@ -660,6 +665,32 @@ loadNotes();
 loadExpenses();
 
 </script>
+
+
+function renderNotePreview() {
+  var raw = document.getElementById('noteContent').value;
+  var html = raw.split('\n').map(function(line) {
+    if (line.startsWith('✅')) {
+      return '<span class="check-done">' + escHtml(line) + '</span>';
+    } else if (line.startsWith('☐')) {
+      return '<span class="check-todo">' + escHtml(line) + '</span>';
+    } else if (line.match(/^[A-ZÆØÅ ]{4,}$/) || line.match(/^={3,}$/)) {
+      return '<span class="section-header">' + escHtml(line) + '</span>';
+    }
+    return escHtml(line);
+  }).join('\n');
+  document.getElementById('noteRendered').innerHTML = html;
+}
+function switchToEdit() {
+  document.getElementById('noteContent').style.display = 'block';
+  document.getElementById('noteRendered').style.display = 'none';
+  document.getElementById('noteContent').focus();
+}
+function switchToPreview() {
+  renderNotePreview();
+  document.getElementById('noteContent').style.display = 'none';
+  document.getElementById('noteRendered').style.display = 'block';
+}
 
 <!-- AIONOVIA SYNC -->
 <style>
