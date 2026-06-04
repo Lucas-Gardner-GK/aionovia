@@ -117,6 +117,7 @@ footer { background: #1e2235; border-top: 1px solid #2d3148; padding: 20px 48px;
     <button class="btn btn-outline" onclick="exportNotes()">Eksporter</button>
     <button class="btn btn-primary" id="save-btn" onclick="saveCurrentNote()">Lagre</button>
   </div>
+  <div id="sync-status" style="font-size:12px;padding:4px 12px;border-radius:6px;background:#f0fdf4;color:#22c55e;border:1px solid #bbf7d0;">✅ Laster notater...</div>
 </header>
 
 <!-- NOTES TAB -->
@@ -241,10 +242,26 @@ let currentId = null;
 let saveTimer = null;
 
 function loadNotes() {
-  const saved = localStorage.getItem('aionovia_notes_v3');
-  if (saved) {
-    notes = JSON.parse(saved);
-  } else {
+  // Last fra GitHub raw URL (delt mellom Lucas og Vetle)
+  fetch('https://raw.githubusercontent.com/Lucas-Gardner-GK/aionovia/main/notes.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.length > 0) {
+        notes = data;
+        renderList();
+        if (notes.length > 0) openNote(notes[0].id);
+        showSyncStatus('✅ Synkronisert med GitHub', '#22c55e');
+      }
+    })
+    .catch(() => {
+      // Fallback til localStorage
+      const saved = localStorage.getItem('aionovia_notes_v3');
+      if (saved) notes = JSON.parse(saved);
+      showSyncStatus('⚠️ Offline — bruker lokal versjon', '#f59e0b');
+      renderList();
+      if (notes.length > 0) openNote(notes[0].id);
+    });
+  if (false) {
     const now = new Date().toISOString();
     notes = [
       { id:1, title:'🚀 Aionovia — Oppsummering & Status', category:'annet', created:now, updated:now, content:`AIONOVIA — AI AGENT MARKETPLACE
@@ -438,7 +455,15 @@ PRISER (til markedsføring)
   if (notes.length > 0) openNote(notes[0].id);
 }
 
-function saveNotes() { localStorage.setItem('aionovia_notes_v3', JSON.stringify(notes)); }
+function saveNotes() { 
+  localStorage.setItem('aionovia_notes_v3', JSON.stringify(notes));
+  showSyncStatus('💾 Lagret lokalt — si til Claude: "push notater til GitHub"', '#f59e0b');
+}
+
+function showSyncStatus(msg, color) {
+  const el = document.getElementById('sync-status');
+  if (el) { el.textContent = msg; el.style.color = color; el.style.borderColor = color; el.style.background = color + '15'; }
+}
 
 function saveCurrentNote() {
   if (currentId === null) return;
