@@ -957,5 +957,78 @@ body {
   GK Automation · Lucas Gardner & Vetle Kolstad · Stavanger, Norge · Juni 2026 · Konfidensielt
 </div>
 
+
+<!-- AIONOVIA SYNC -->
+<style>
+#sync-bar {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#sync-btn {
+  background: #4f6ef7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 4px 16px rgba(79,110,247,0.3);
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+#sync-btn:hover { background: #6a58f0; transform: translateY(-1px); }
+#sync-btn.syncing { opacity: 0.7; pointer-events: none; }
+#sync-countdown {
+  font-size: 11px;
+  color: #9ca3af;
+  background: rgba(0,0,0,0.6);
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+</style>
+<div id="sync-bar">
+  <div id="sync-countdown">Auto-sync om 5:00</div>
+  <button id="sync-btn" onclick="syncNow()">↻ Sync</button>
+</div>
+<script>
+(function() {
+  var INTERVAL = 5 * 60; // 5 min in seconds
+  var remaining = INTERVAL;
+  var countdownEl = document.getElementById('sync-countdown');
+  var btnEl = document.getElementById('sync-btn');
+
+  function fmt(s) {
+    var m = Math.floor(s/60), sec = s%60;
+    return 'Auto-sync om ' + m + ':' + (sec<10?'0':'') + sec;
+  }
+
+  var timer = setInterval(function() {
+    remaining--;
+    if (remaining <= 0) {
+      remaining = INTERVAL;
+      location.reload();
+    }
+    countdownEl.textContent = fmt(remaining);
+  }, 1000);
+
+  window.syncNow = function() {
+    btnEl.textContent = '↻ Syncer...';
+    btnEl.classList.add('syncing');
+    setTimeout(function() { location.reload(); }, 300);
+  };
+})();
+</script>
+<!-- END AIONOVIA SYNC -->
+
 </body>
 </html>
