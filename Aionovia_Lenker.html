@@ -95,51 +95,29 @@ code { background:#f0f2ff; border:1px solid #c7d0fa; border-radius:4px; padding:
 <div class="section">
   <div class="section-title">🔄 GitHub flyt — push & pull</div>
   <div class="workflow">
-    <h3>Slik syncer du endringer med Vetle</h3>
+    <h3>Slik syncer Lucas og Vetle endringer</h3>
 
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
-        <div class="step-title">Lucas redigerer en fil via Claude</div>
-        <div class="step-desc">Lucas ber Claude om å endre noe i en fil som vanlig.</div>
+        <div class="step-title">Be Claude om å endre noe</div>
+        <div class="step-desc">Lucas eller Vetle ber sin Claude om å redigere en fil. Claude gjør endringen automatisk.</div>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">2</div>
       <div class="step-body">
-        <div class="step-title">Push til GitHub</div>
-        <div class="step-desc">Åpne Terminal og kjør:<br><br>
-        <code>cd ~/Desktop/AIONOVIA_snarvei && git add . && git commit -m "oppdatering" && git push</code>
-        </div>
+        <div class="step-title">Claude pusher automatisk til GitHub</div>
+        <div class="step-desc">Claude pusher endringen til GitHub automatisk etter hver redigering. Ingen manuell terminal-kommando nødvendig.</div>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <div class="step-title">Vetle henter endringene</div>
-        <div class="step-desc">Vetle kjører på sin Mac:<br><br>
-        <code>cd ~/Desktop/AIONOVIA && git pull</code>
-        </div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <div class="step-title">Vetle redigerer og pusher</div>
-        <div class="step-desc">Vetle ber Claude redigere, pusher med samme kommando som steg 2.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">5</div>
-      <div class="step-body">
-        <div class="step-title">Lucas puller Vetles endringer</div>
-        <div class="step-desc">Lucas kjører:<br><br>
-        <code>cd ~/Desktop/AIONOVIA_snarvei && git pull</code>
-        </div>
+        <div class="step-title">Den andre henter endringene</div>
+        <div class="step-desc">Be Claude: <code>"Hent siste endringer fra GitHub (git pull)"</code> — Claude gjør det automatisk.</div>
       </div>
     </div>
 
