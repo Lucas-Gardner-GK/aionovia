@@ -738,7 +738,27 @@ body {
     </div>
     <div class="callout callout-green" style="margin-top:12px;">
       <div class="callout-icon">🔌</div>
-      <div class="callout-text"><strong>Slik fungerer det under panseret:</strong> Aionovia er et lag mellom brukeren og teknologien. Bak kulissene bygger Aionovia alle agentene i n8n — Aionovia eier all kode, alle OpenAI-nøkler og alle integrasjoner. Brukeren kobler kun til sin egen Gmail eller Slack via OAuth. Når brukeren trykker "Aktiver" tar Aionovia brukerens kobling, plugger den inn i den ferdige n8n-workflowen og starter den. Brukeren ser ingenting av dette — de ser bare at e-postene begynner å bli besvart automatisk.<br><br><strong>En god analogi:</strong> Aionovia er veggen med strøm. Brukeren plugger bare inn kontakten sin. De trenger ikke å forstå hva som skjer inne i veggen.</div>
+      <div class="callout-text">
+        <strong>Slik fungerer Aionovia under panseret — fra grunnen og opp:</strong><br><br>
+
+        <strong>1. Hva er en AI-agent?</strong><br>
+        En AI-agent er et automatisert program som utfører oppgaver på vegne av brukeren — for eksempel å lese e-post, forstå innholdet, formulere et svar og sende det. Alt skjer automatisk, uten at brukeren løfter en finger.<br><br>
+
+        <strong>2. Hva er n8n?</strong><br>
+        n8n er verktøyet Aionovia bruker til å bygge og kjøre disse agentene. Tenk på det som et avansert "rørsystem" som kobler sammen ulike tjenester — Gmail, Slack, OpenAI, kalendere og mer — og bestemmer hva som skal skje når, og i hvilken rekkefølge. Aionovia bygger disse "rørene" én gang, perfekt og gjennomtestet.<br><br>
+
+        <strong>3. Hva er OpenAI / AI-hjernen?</strong><br>
+        OpenAI (GPT) eller Claude er AI-modellen som tenker og skriver — den leser en innkommende e-post og formulerer et intelligent svar. Aionovia eier tilgangen til disse modellene og betaler for bruken. Brukeren ser aldri denne delen — den er usynlig bak kulissene.<br><br>
+
+        <strong>4. Hva gjør brukeren?</strong><br>
+        Brukeren kobler kun til sine egne kontoer — for eksempel Gmail — via OAuth. OAuth er en sikker, standardisert metode der brukeren trykker "Logg inn med Google" og godkjenner tilgang. Ingen passord deles, ingen koder skrives. Det tar 30 sekunder.<br><br>
+
+        <strong>5. Hva skjer når brukeren trykker "Aktiver"?</strong><br>
+        Aionovia tar brukerens Gmail-kobling og plugger den inn i den ferdige n8n-workflowen. Fra det øyeblikket overvåker agenten innboksen kontinuerlig — leser nye e-poster, sender dem til OpenAI for analyse, formulerer et svar og sender det automatisk. Brukeren gjør ingenting.<br><br>
+
+        <strong>En god analogi:</strong><br>
+        Aionovia er veggen med strøm. n8n er ledningene inne i veggen. OpenAI er kraftverket. Brukeren plugger bare inn kontakten sin. De trenger ikke å forstå hva som skjer inne i veggen — de ser bare at lyset lyser.
+      </div>
     </div>
   </div>
 
