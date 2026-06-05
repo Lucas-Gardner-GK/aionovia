@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Møteprep — Ole Andre Torjussen</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 40px 24px; }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 48px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+  .header p { font-size: 15px; color: #94a3b8; }
+  .logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 24px; }
+  .logo-icon { width: 36px; height: 36px; background: #4f6ef7; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: white; }
+
+  .day-section { margin-bottom: 40px; }
+  .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #1e293b; }
+  .day-badge { font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+  .day-title { font-size: 18px; font-weight: 600; color: #ffffff; }
+
+  .task { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; }
+  .task-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .task-title { font-size: 15px; font-weight: 600; color: #f1f5f9; flex: 1; }
+  .tag { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.5px; flex-shrink: 0; }
+  .must { background: #450a0a; color: #fca5a5; }
+  .should { background: #431407; color: #fdba74; }
+  .nice { background: #052e16; color: #86efac; }
+
+  .task-desc { font-size: 14px; color: #94a3b8; line-height: 1.7; margin-bottom: 16px; }
+
+  .answer-box { background: #0f172a; border: 1px solid #4f6ef7; border-left: 3px solid #4f6ef7; border-radius: 8px; padding: 16px 20px; margin-top: 4px; }
+  .answer-label { font-size: 10px; font-weight: 700; color: #4f6ef7; letter-spacing: 1px; margin-bottom: 8px; }
+  .answer-text { font-size: 14px; color: #cbd5e1; line-height: 1.7; }
+  .answer-text strong { color: #e2e8f0; font-weight: 600; }
+
+  .example-box { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 14px 18px; margin-top: 10px; }
+  .example-label { font-size: 10px; font-weight: 700; color: #64748b; letter-spacing: 1px; margin-bottom: 6px; }
+  .example-text { font-size: 13px; color: #94a3b8; line-height: 1.6; font-style: italic; }
+
+  .footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid #1e293b; }
+  .footer p { font-size: 13px; color: #475569; }
+  .footer strong { color: #64748b; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span style="font-size:20px; font-weight:700; color:#ffffff;">Aionovia</span>
+    </div>
+    <h1>Møteprep — Ole Andre Torjussen</h1>
+    <p>Søndag kl. 15:00 &nbsp;·&nbsp; Les dette grundig fredag og lørdag</p>
+  </div>
+
+  <!-- FREDAG -->
+  <div class="day-section">
+    <div class="day-header">
+      <span class="day-badge" style="background:#172554; color:#93c5fd;">Fredag</span>
+      <span class="day-title">Lær det dere ikke kan</span>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Én setning som forklarer Aionovia</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Dette er det første Ole Andre vil spørre om. Hvis dere nøler, mister dere ham. Øv til det sitter — begge to, uavhengig av hverandre.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR SOM SITTER</div>
+        <div class="answer-text">
+          "Aionovia er en App Store for AI-agenter. Bedrifter laster ned ferdige agenter med ett klikk og automatiserer oppgaver som e-post, fakturering og kundeservice — uten å skrive én linje kode. Creators bygger og selger agentene og tjener penger per nedlasting."
+        </div>
+      </div>
+      <div class="example-box">
+        <div class="example-label">HVIS HAN SPØR "SÅ DET ER SOM APP STORE FOR IPHONE?"</div>
+        <div class="example-text">"Akkurat. Apple bygde ikke alle appene selv — de bygde plattformen. Det er det vi gjør for AI-agenter i Norge."</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Prismodellen — utenat</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Han vil spørre hva det koster. Ha det klart uten å tenke. Ikke google, ikke se på papir.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR</div>
+        <div class="answer-text">
+          <strong>Starter:</strong> 99 kr/mnd — for småbedrifter som vil teste<br>
+          <strong>Pro:</strong> 299 kr/mnd — for bedrifter med litt mer behov<br>
+          <strong>Business:</strong> 799 kr/mnd — for bedrifter som bruker det aktivt<br><br>
+          <strong>Creator-splitt:</strong> Creators som bygger og selger agenter får 70% av inntekten. Vi tar 30%. Når en creator passerer 50 000 nedlastinger, øker splitt til 80/20.
+        </div>
+      </div>
+      <div class="example-box">
+        <div class="example-label">HVIS HAN SPØR "ER DET DYRT?"</div>
+        <div class="example-text">"Menos enn en ansatt på én time. En bedrift som automatiserer e-post og fakturering sparer raskt flere dager i måneden. 99 kr er ingenting i den sammenligningen."</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Hvem er kunden — og hvem er creator?</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">To helt forskjellige brukergrupper. Dere må skille klart mellom dem hvis han spør.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR</div>
+        <div class="answer-text">
+          <strong>Kunden (bedriften):</strong> Norske SMB-bedrifter — regnskapsfirmaer, eiendomsmeglere, håndverkere, butikker. De vil spare tid, ikke bygge tech. De laster ned en ferdig agent og er i gang på minutter.<br><br>
+          <strong>Creator (byggeren):</strong> Tekniske folk som Lucas som bygger agenter og selger dem på plattformen. I starten er vi selv de første creators — det er en styrke fordi vi kontrollerer kvaliteten på innholdet fra dag én.
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Hva hindrer noen fra å kopiere dere?</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Dette er det hardeste spørsmålet. Ikke bli defensiv — vær ærlig og vis at dere har tenkt på det.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR</div>
+        <div class="answer-text">
+          "Ingenting hindrer noen teknisk fra å starte noe lignende. Men vi er allerede i gang, vi er først i Norge, og moaten bygges gjennom nettverk og tillit over tid — akkurat som det tok år å bygge App Store-alternativet til Apple. Den som er der først og bygger relasjonene med creators og bedrifter, vinner. Vi er der nå."
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Hvorfor nå?</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Han vil vil vite om timingen er riktig. Ha et klart svar.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR</div>
+        <div class="answer-text">
+          "ChatGPT og AI-bølgen de siste to årene har gjort folk klare for å ta i bruk AI — men de vet ikke hvordan. Microsoft og Google fokuserer på store enterprise-kunder. Ingen har laget dette for norske SMB-bedrifter. Vinduet er åpent akkurat nå, og vi utnytter det."
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">GitHub → nettside / app — konseptuelt</span>
+        <span class="tag should">BØR</span>
+      </div>
+      <p class="task-desc">Han vil kanskje spørre hvordan ting henger teknisk sammen. Dere trenger ikke detaljer — bare konseptet.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR</div>
+        <div class="answer-text">
+          <strong>GitHub</strong> er et lager for kode — som en sky-mappe der all koden bor og er versjonsstyrt.<br><br>
+          <strong>GitHub → nettside:</strong> GitHub Pages gjør kode om til en live nettside automatisk. aionovia.com kjører allerede slik.<br><br>
+          <strong>GitHub → app:</strong> Koden bygges og pakkes automatisk via en pipeline, og sendes til App Store (iOS) eller Google Play (Android). Det er en prosess som tar noen timer å sette opp, men kjører selv etter det.
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Break-even tallene</span>
+        <span class="tag should">BØR</span>
+      </div>
+      <p class="task-desc">Viser at dere har tenkt på business-siden, ikke bare produktet.</p>
+      <div class="answer-box">
+        <div class="answer-label">TALL Å KUNNE</div>
+        <div class="answer-text">
+          <strong>Realistisk scenario:</strong> 10 000 brukere × snitt 200 kr/mnd = 2 000 000 kr/mnd<br>
+          <strong>Optimistisk:</strong> 100 000 brukere = 30 000 000 kr/mnd → exit 1–3 mrd kr<br><br>
+          For å dekke driftskostnader i starten er terskelen lav — vi bruker n8n, GitHub Pages og eksisterende infrastruktur. Ingen serverkostnader av betydning i MVP-fasen.
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">MVP vs full versjon</span>
+        <span class="tag should">BØR</span>
+      </div>
+      <p class="task-desc">Vit hva fase 1 faktisk er. Ikke lov for mye — vis at dere har en realistisk plan.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR</div>
+        <div class="answer-text">
+          <strong>MVP (nå):</strong> Landingsside med e-postinnsamling. Mål: 100 e-poster = validering. 3–5 agenter tilgjengelig for de første brukerne.<br><br>
+          <strong>Full versjon:</strong> Marketplace med upload-funksjon der creators sender inn agenter, betalingssystem (Stripe), creator-dashboard med inntektsoversikt, og bruker-dashboard med nedlastede agenter.<br><br>
+          <strong>Neste steg etter MVP:</strong> Samle e-poster → teste med første brukere → iterere → åpne for creators.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LØRDAG -->
+  <div class="day-section">
+    <div class="day-header">
+      <span class="day-badge" style="background:#1c1917; color:#fdba74;">Lørdag</span>
+      <span class="day-title">Rollespill og hull-testing</span>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Rollespill møtet — Vetle spiller Ole Andre</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Dette er det viktigste dere gjør lørdag. Ikke snakk om å gjøre det — gjør det. Sett av 45 minutter og gå gjennom hele møtet fra start til slutt.</p>
+      <div class="answer-box">
+        <div class="answer-label">SLIK GJØR DERE DET</div>
+        <div class="answer-text">
+          1. Vetle spiller Ole Andre — stiller de hardeste spørsmålene han kan tenke seg. Vær ubehagelig. Det er poenget.<br>
+          2. Lucas svarer som om det er ekte møte.<br>
+          3. Etter hver runde: hva funket, hva funket ikke?<br>
+          4. Bytt roller — Vetle svarer, Lucas spiller Ole Andre.<br>
+          5. Gjenta til svarene sitter naturlig — ikke som pugget tekst.
+        </div>
+      </div>
+      <div class="example-box">
+        <div class="example-label">SPØRSMÅL OLE ANDRE SANNSYNLIGVIS STILLER</div>
+        <div class="example-text">
+          — "Hva er egentlig en AI-agent?"<br>
+          — "Hvem bygger agentene dere selger?"<br>
+          — "Hva tjener dere på det?"<br>
+          — "Hva trenger dere fra meg?"<br>
+          — "Har noen andre gjort dette?"<br>
+          — "Hva er tidsplanen?"<br>
+          — "Hvorfor er det akkurat dere to som skal klare dette?"
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Test demoen — aionovia.com + prototypen</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Dere har to ting å vise frem: nettsiden og prototypen. Øv på overgangene — hva sier dere mellom hver skjerm?</p>
+      <div class="answer-box">
+        <div class="answer-label">DEMO-REKKEFØLGE</div>
+        <div class="answer-text">
+          1. Åpne <strong>aionovia.com</strong> — vis at det er live. "Vi har allerede domenet og nettsiden oppe."<br>
+          2. Åpne <strong>Ainovia_prototype.html</strong> — klikk gjennom alle 7 sider sakte.<br>
+          3. Forklar hvert skjermbilde på 1–2 setninger. Ikke les opp alt på siden.<br>
+          4. Avslutt med: "Dette er hvor vi er nå. Neste steg er å fylle den med de første agentene og få 100 e-poster fra bedrifter som vil prøve."
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Avklar rollene dere imellom</span>
+        <span class="tag should">BØR</span>
+      </div>
+      <p class="task-desc">Ole Andre vil spørre hvem som gjør hva. Ha et klart, enkelt svar — uten å nøle.</p>
+      <div class="answer-box">
+        <div class="answer-label">SVAR</div>
+        <div class="answer-text">
+          <strong>Lucas:</strong> Tech og bygging. Bygger agentene, setter opp infrastruktur, koder produktet.<br>
+          <strong>Vetle:</strong> Relasjoner og salg. Kontakt med kunder, nettverk, strategisk utvikling.<br><br>
+          Ingen overlapp, ingen forvirring. Dere utfyller hverandre.
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Les gjennom investordokumentet sammen</span>
+        <span class="tag should">BØR</span>
+      </div>
+      <p class="task-desc">Ikke for å vise det frem nødvendigvis — men for å ha tallene og argumentene i hodet. Åpne Aionovia_Investordokument.html og les høyt for hverandre.</p>
+      <div class="answer-box">
+        <div class="answer-label">FOKUSER PÅ DISSE DELENE</div>
+        <div class="answer-text">
+          — Hva problemet er (bedrifter bruker for mye tid på manuelle oppgaver)<br>
+          — Løsningen (Aionovia)<br>
+          — Markedsstørrelsen (norske SMB)<br>
+          — Forretningsmodellen (abonnement + creator-cut)<br>
+          — Tallene (se break-even over)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SØNDAG -->
+  <div class="day-section">
+    <div class="day-header">
+      <span class="day-badge" style="background:#052e16; color:#86efac;">Søndag</span>
+      <span class="day-title">Ro — ingen ny info</span>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Rask gjennomlesing av møteplanen</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Ikke lær noe nytt søndag. Bare rolig gjennomlesing av strukturen. Ny informasjon like før et møte skaper usikkerhet og forvirring — ikke kunnskap.</p>
+      <div class="answer-box">
+        <div class="answer-label">STRUKTUREN FOR MØTET</div>
+        <div class="answer-text">
+          1. <strong>Vetle tar smalltalk og intro</strong> — han kjenner Ole Andre, det er hans relasjon<br>
+          2. <strong>Lucas introduserer Aionovia</strong> — én setning, rett på sak<br>
+          3. <strong>Demo:</strong> aionovia.com → prototype<br>
+          4. <strong>Spørsmål og dialog</strong> — begge deltar<br>
+          5. <strong>Ikke be om noe</strong> — la Ole Andre tilby. Hvis han vil hjelpe, vil han si det selv.
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Sjekk at alt fungerer teknisk</span>
+        <span class="tag must">MÅ</span>
+      </div>
+      <p class="task-desc">Test alt én gang søndag morgen. Ikke fikse ting i siste liten.</p>
+      <div class="answer-box">
+        <div class="answer-label">SJEKKLISTE</div>
+        <div class="answer-text">
+          ☐ Laptop er lader<br>
+          ☐ aionovia.com laster (sjekk i Safari og Chrome)<br>
+          ☐ Ainovia_prototype.html åpner og alle 7 sider fungerer<br>
+          ☐ Aionovia_Investordokument.html åpner<br>
+          ☐ Ingen "Not Secure"-advarsel på aionovia.com (HTTPS skal være aktivt)
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-header">
+        <span class="task-title">Ikke overtenk det</span>
+        <span class="tag nice">NICE</span>
+      </div>
+      <p class="task-desc">Dere er bedre forberedt enn de aller fleste som går inn i et slikt møte.</p>
+      <div class="answer-box">
+        <div class="answer-label">HUSK</div>
+        <div class="answer-text">
+          Dere har et live domene, en fungerende nettside, en clickable prototype, et investordokument og en byggeplan. De fleste som pitcher en idé har én PowerPoint og en idé i hodet. Dere har bevis på at dere faktisk bygger.<br><br>
+          Ole Andre er ikke en fiende — han er nysgjerrig. Møt ham med ro og ærlighet, ikke salgssnakk.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Aionovia &nbsp;·&nbsp; <strong>GK Automation AS</strong> &nbsp;·&nbsp; Stavanger, Norge &nbsp;·&nbsp; 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
