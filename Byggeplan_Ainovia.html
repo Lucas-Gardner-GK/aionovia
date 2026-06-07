@@ -118,7 +118,7 @@
     </div>
     <div class="callout callout-blue">
       <div class="callout-icon">🔌</div>
-      <div class="callout-text"><strong>Strømplugg-modellen:</strong> Aionovia bygger og drifter alle agentene i bakgrunnen. Bedriften kobler til sine egne systemer via OAuth (Logg inn med Google). Fra det øyeblikket kjører agentene automatisk. Bedriften ser bare at e-postene blir besvart og møtene booket — uten å gjøre noe selv.</div>
+      <div class="callout-text"><strong>Strømplugg-modellen:</strong> Aionovia bygger og drifter alle agentene i bakgrunnen. Bedriften kobler til sine egne systemer via OAuth (Logg inn med Google). Alle agenter kjøres gjennom MCP — Model Context Protocol — som gjør at Claude faktisk kan handle på vegne av brukeren. Lese e-post, sende svar, booke møter. Bedriften ser bare at alt skjer automatisk — uten å gjøre noe selv.</div>
     </div>
   </div>
 
@@ -272,7 +272,8 @@
         <li><strong>Supabase-backend</strong> — database, brukerkontoer og autentisering</li>
         <li><strong>OAuth-integrasjoner</strong> — koble til Gmail, Outlook, Slack og Google Calendar</li>
         <li><strong>Dashbord-UI</strong> — oversikt over aktive agenter og koblete kontoer</li>
-        <li><strong>3 grunnleggende agenter</strong> — email responder, booking og kundeservice i n8n</li>
+        <li><strong>MCP-server</strong> — alle agenter kobles til Claude via MCP slik at de kan handle på vegne av brukeren</li>
+        <li><strong>3 grunnleggende agenter</strong> — email responder, booking og kundeservice bygget i n8n og kjørt via MCP</li>
         <li><strong>Stripe-betalinger</strong> — månedlig abonnement og add-on fakturering</li>
         <li><strong>Beta-test</strong> — 20–50 bedrifter tester og gir tilbakemelding</li>
       </ul>
@@ -327,13 +328,18 @@
       </div>
       <div class="stack-item">
         <div class="stack-name">n8n</div>
-        <div class="stack-role">Agenter — automatisering</div>
-        <div class="stack-desc">Alle AI-agentene bygges og kjøres i n8n. Kobles til brukerens Gmail og Slack via OAuth.</div>
+        <div class="stack-role">Agenter — orkestrering</div>
+        <div class="stack-desc">Orkestrerer flyten mellom OAuth-koblinger, MCP og Claude. Bestemmer hva som skjer når og i hvilken rekkefølge.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">MCP</div>
+        <div class="stack-role">Handling — Model Context Protocol</div>
+        <div class="stack-desc">Gjør at Claude faktisk kan handle på vegne av brukeren — lese e-post, sende svar, booke møter. Alle agenter kjøres gjennom MCP.</div>
       </div>
       <div class="stack-item">
         <div class="stack-name">OpenAI / Claude</div>
         <div class="stack-role">AI — hjernen</div>
-        <div class="stack-desc">AI-modellen som forstår e-post, formulerer svar og tar beslutninger. Aionovia eier API-nøkkelen.</div>
+        <div class="stack-desc">AI-modellen som forstår innhold, formulerer svar og tar beslutninger. Aionovia eier API-nøkkelen — brukeren ser aldri denne.</div>
       </div>
       <div class="stack-item">
         <div class="stack-name">Stripe</div>
